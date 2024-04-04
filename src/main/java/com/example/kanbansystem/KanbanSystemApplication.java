@@ -8,6 +8,7 @@ public class KanbanSystemApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(KanbanSystemApplication.class, args);
+
     }
 
 }

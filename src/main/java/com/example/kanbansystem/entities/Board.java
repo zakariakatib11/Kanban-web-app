@@ -25,6 +25,6 @@ public class Board {
     )
     private List<Task> tasks;
     @ManyToOne
-    private User user;
+    private user user;
 
 }

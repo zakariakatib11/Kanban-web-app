@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.util.List;
 
 @Data
@@ -24,6 +23,6 @@ public class Task {
     @ManyToOne
     private Board board;
     @ManyToMany
-    private List<User> users;
+    private List<user> users;
 
 }
