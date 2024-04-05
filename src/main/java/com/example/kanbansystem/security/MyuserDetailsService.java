@@ -20,9 +20,12 @@ public class MyuserDetailsService implements UserDetailsService {
         Optional<User> user = userRepository.findByUsername(username);
         return user.map(App_user::new).get();
     }
-    public User addNewUser(User userDto) {
-        User new_user=new User(userDto.getUsername(),userDto.getPassword(),
-                userDto.getEmail(),userDto.isActive(),userDto.getRoles());
+    public User addNewUser(User user) {
+        User new_user=new User(user.getUsername(),
+                user.getPassword(),
+                user.getEmail(),
+                user.isActive(),
+                user.getRoles());
         return userRepository.save(new_user);
     }
 
