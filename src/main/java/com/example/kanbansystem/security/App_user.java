@@ -1,7 +1,7 @@
 package com.example.kanbansystem.security;
 
 
-import com.example.kanbansystem.entities.user;
+import com.example.kanbansystem.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,7 +22,7 @@ public class App_user implements UserDetails {
     private String email;
     private boolean active;
     private List<GrantedAuthority> authorities;
-    public App_user(user user){
+    public App_user(User user){
         this.username=user.getUsername();
         this.password=user.getPassword();
         this.email=user.getEmail();
@@ -30,7 +30,6 @@ public class App_user implements UserDetails {
         this.authorities= Arrays.stream(user.getRoles().split(","))
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
-
     }
 
     @Override

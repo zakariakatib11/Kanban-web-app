@@ -2,6 +2,7 @@ package com.example.kanbansystem.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -19,15 +20,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(myUserDetailsService());
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests()
-                .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/user").hasRole("USER")
-                .antMatchers("/addUser").hasRole("ADMIN")
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers(HttpMethod.GET,"/admin").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/user").hasRole("USER")
+                .antMatchers(HttpMethod.POST,"/addUser").hasRole("ADMIN")
 
-                .antMatchers("/").permitAll()
-                .and().formLogin();
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+               // .failureHandler(authenticationFailureHandler())// Set custom authentication failure handler
+                .and()
+                .httpBasic();
     }
 
     @Bean

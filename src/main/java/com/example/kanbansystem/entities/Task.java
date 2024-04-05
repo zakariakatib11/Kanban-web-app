@@ -23,6 +23,6 @@ public class Task {
     @ManyToOne
     private Board board;
     @ManyToMany
-    private List<user> users;
+    private List<User> users;
 
 }
