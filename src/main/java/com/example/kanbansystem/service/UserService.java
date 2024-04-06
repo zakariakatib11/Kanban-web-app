@@ -10,8 +10,11 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
     public User saveuser(User userDto) {
-        User new_user=new User(userDto.getUsername(),userDto.getPassword(),
-                userDto.getEmail(),userDto.isActive(),userDto.getRoles());
+        User new_user=new User(userDto.getUsername(),
+                userDto.getPassword(),
+                userDto.getEmail(),
+                userDto.isActive(),
+                userDto.getRoles());
 
         return userRepository.save(new_user);
     }

@@ -1,6 +1,8 @@
 package com.example.kanbansystem.entities;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,6 +25,7 @@ public class Board {
             mappedBy = "board",
             fetch = FetchType.LAZY
     )
+
     private List<Task> tasks;
     @ManyToOne
     private User user;

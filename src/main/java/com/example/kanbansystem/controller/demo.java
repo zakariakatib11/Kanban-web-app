@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin("*")
 public class demo {
     @Autowired
     private MyuserDetailsService myuserDetailsService;
@@ -21,7 +22,9 @@ public class demo {
     }
     @PostMapping("/addUser")
     public String addUser(){
+       // User savedUser = new User("doumi","123","@.com",true,"ROLE_ADMIN");
         User savedUser = new User();
+
         myuserDetailsService.addNewUser(savedUser);
         return "User added successfully!";
     }

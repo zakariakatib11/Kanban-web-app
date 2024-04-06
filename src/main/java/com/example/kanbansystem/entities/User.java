@@ -2,6 +2,7 @@ package com.example.kanbansystem.entities;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import java.util.List;
@@ -27,6 +28,7 @@ public class User {
             mappedBy = "user",
             fetch = FetchType.LAZY
     )
+    @JsonIgnore
     private List<Board> boards;
     @ManyToMany(
             mappedBy = "users",
