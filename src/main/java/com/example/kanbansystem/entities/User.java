@@ -11,8 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Getter
-@Setter
+@ToString(exclude = "boards")
 @Table(name = "utilisateur")
 public class User {
     @Id
