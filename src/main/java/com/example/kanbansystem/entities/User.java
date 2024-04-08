@@ -1,16 +1,15 @@
 package com.example.kanbansystem.entities;
 
 import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-
 import java.util.List;
 
-@Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
+@Getter
+@Setter
 @ToString(exclude = "boards")
 @Table(name = "utilisateur")
 public class User {
@@ -33,8 +32,8 @@ public class User {
             mappedBy = "users",
             fetch = FetchType.LAZY
     )
-    private List<Task> tasks ;
-
+    @JsonIgnore
+    private List<Task> tasks;
     public User(String username, String password, String email, boolean active, String roles) {
         this.username = username;
         this.password = password;

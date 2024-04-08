@@ -1,10 +1,8 @@
 package com.example.kanbansystem.controller;
 
-import com.example.kanbansystem.entities.User;
 import com.example.kanbansystem.security.MyuserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 @RestController
 @CrossOrigin("*")
 public class demo {
@@ -20,14 +18,5 @@ public class demo {
     public String helloUser(){
         return "hello User";
     }
-    @PostMapping("/addUser")
-    public String addUser(){
-       // User savedUser = new User("doumi","123","@.com",true,"ROLE_ADMIN");
-        User savedUser = new User();
-
-        myuserDetailsService.addNewUser(savedUser);
-        return "User added successfully!";
-    }
-
 
 }

@@ -6,6 +6,7 @@ import com.example.kanbansystem.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -15,6 +16,8 @@ public class MyuserDetailsService implements UserDetailsService {
 
     @Autowired
    private UserRepository userRepository;
+    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
     @Override
     public UserDetails loadUserByUsername(String username){
         Optional<User> user = userRepository.findByUsername(username);
@@ -22,7 +25,7 @@ public class MyuserDetailsService implements UserDetailsService {
     }
     public User addNewUser(User user) {
         User new_user=new User(user.getUsername(),
-                user.getPassword(),
+                passwordEncoder.encode(user.getPassword()),
                 user.getEmail(),
                 user.isActive(),
                 user.getRoles());

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -15,13 +14,11 @@ public class BoardController {
 
     @Autowired
     private BoardService boardService;
-
     @GetMapping("/boards")
     public ResponseEntity<List<Board>> getAllBoard() {
         List<Board> boards = boardService.getAllBoard();
         return new ResponseEntity<>(boards, HttpStatus.OK);
     }
-
     @GetMapping("boards/{boardName}")
     public ResponseEntity<Board> getBoardByName(@PathVariable("boardName") String boardName) {
         Board board = boardService.getBoardByName(boardName);
@@ -31,7 +28,6 @@ public class BoardController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
     @PostMapping("boards")
     public ResponseEntity<Board> saveBoard(@RequestBody Board board) {
         Board savedBoard = boardService.saveBoard(board);
@@ -42,5 +38,6 @@ public class BoardController {
     public ResponseEntity<String> deleteBoardById(@PathVariable("boardId") Long boardId) {
         String result = boardService.deleteBoardById(boardId);
         return new ResponseEntity<>(result, HttpStatus.OK);
+
     }
 }
