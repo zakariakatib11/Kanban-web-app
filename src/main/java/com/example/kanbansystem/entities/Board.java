@@ -27,8 +27,8 @@ public class Board {
             mappedBy = "board",
             fetch = FetchType.LAZY
     )
+    @JsonIgnore
     private List<Task> tasks;
     @ManyToOne
-    @JsonIgnore
     private User user;
 }

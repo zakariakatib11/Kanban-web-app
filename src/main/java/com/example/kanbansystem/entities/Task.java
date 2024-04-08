@@ -20,9 +20,9 @@ public class Task {
     private TaskStatus status;
     private Integer estimation;
     @ManyToOne
-    @JsonIgnore
+   // @JsonIgnore
     private Board board;
     @ManyToMany
-    @JsonIgnore
+  // @JsonIgnore
     private List<User> users;
 }
