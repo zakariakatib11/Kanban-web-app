@@ -1,17 +1,15 @@
 package com.example.kanbansystem.entities;
 
 import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import lombok.*;
 import java.util.Date;
 import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(exclude = "user")
 @Entity
 public class Board {
     @Id
@@ -25,9 +23,8 @@ public class Board {
             mappedBy = "board",
             fetch = FetchType.LAZY
     )
-
     private List<Task> tasks;
     @ManyToOne
+    @JsonIgnore
     private User user;
-
 }

@@ -1,14 +1,11 @@
 package com.example.kanbansystem.security;
 
-
 import com.example.kanbansystem.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;

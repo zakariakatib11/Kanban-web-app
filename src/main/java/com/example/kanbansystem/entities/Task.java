@@ -1,15 +1,14 @@
 package com.example.kanbansystem.entities;
 
 import javax.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(exclude = "users")
 @Entity
 public class Task {
     @Id
@@ -21,8 +20,9 @@ public class Task {
     private TaskStatus status;
     private Integer estimation;
     @ManyToOne
+    @JsonIgnore
     private Board board;
     @ManyToMany
+    @JsonIgnore
     private List<User> users;
-
 }
