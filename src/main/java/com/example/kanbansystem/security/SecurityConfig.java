@@ -25,12 +25,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET,"/admin").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET,"/user").hasRole("USER")
-                .antMatchers(HttpMethod.POST,"/addUser").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/user").hasRole("ADMIN")
+
                 .antMatchers(HttpMethod.GET,"/api/boards/**").hasAnyRole("ADMIN","USER")
+                .antMatchers(HttpMethod.GET,"/api/boardsId/**").hasAnyRole("ADMIN","USER")
                 .antMatchers(HttpMethod.POST,"/api/boards").hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE,"/api/boards/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/api/boardsDeleted/**").hasRole("ADMIN")
+
+                .antMatchers(HttpMethod.GET,"/api/tasks/**").hasAnyRole("ADMIN","USER")
+                .antMatchers(HttpMethod.GET,"/api/taskId/**").hasAnyRole("ADMIN","USER")
+                .antMatchers(HttpMethod.POST,"/api/tasks").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/api/tasksDeleted/**").hasRole("ADMIN")
 
                 .anyRequest().authenticated()
                 .and()

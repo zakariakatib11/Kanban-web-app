@@ -42,7 +42,7 @@ public class TaskController {
         Task savedTask = taskService.saveTask(task);
         return new ResponseEntity<>(savedTask, HttpStatus.CREATED);
     }
-    @RequestMapping(value = "/delete_tasks/{taskId}", method = {RequestMethod.DELETE, RequestMethod.GET})
+    @RequestMapping(value = "/tasksDeleted/{taskId}", method = {RequestMethod.DELETE, RequestMethod.GET})
     public ResponseEntity<String> deleteTaskById(@PathVariable("taskId") Long taskId) {
         String result = taskService.deleteTaskById(taskId);
         if (result != null) {
