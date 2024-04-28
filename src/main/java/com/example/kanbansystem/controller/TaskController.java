@@ -1,6 +1,8 @@
 package com.example.kanbansystem.controller;
 
 import com.example.kanbansystem.entities.Task;
+import com.example.kanbansystem.entities.User;
+import com.example.kanbansystem.service.EmailService;
 import com.example.kanbansystem.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,8 @@ import java.util.Optional;
 public class TaskController {
     @Autowired
     private TaskService taskService;
+    @Autowired
+    private EmailService emailService;
     @GetMapping("/tasks/{taskName}")
     public ResponseEntity<List<Task>> getTaskByName(@PathVariable("taskName") String taskName) {
         List<Task> task = taskService.getTaskByName(taskName);
@@ -23,7 +27,7 @@ public class TaskController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-     @GetMapping("/tasksId/{taskId}")
+    @GetMapping("/tasksId/{taskId}")
     public ResponseEntity<Task> getTaskById(@PathVariable("taskId") Long taskId) {
         Optional<Task> task = taskService.getTaskById(taskId);
         if (task.isPresent()) {
@@ -40,6 +44,19 @@ public class TaskController {
     @PostMapping("/tasks")
     public ResponseEntity<Task> saveTask(@RequestBody Task task) {
         Task savedTask = taskService.saveTask(task);
+        List<User> users = savedTask.getUsers();
+        if (users != null && !users.isEmpty()) {
+            String subject = "You have been added to a task";
+            String body = "You have been added to the task: " + savedTask.getName();
+            for (User user : users) {
+                System.out.println(user.getEmail());
+                if (user.getEmail() != null && !user.getEmail().isEmpty()) {
+                    emailService.sendEmail(user.getEmail(), subject, body);
+                } else {
+                    System.out.println("User email is null or empty for user: " + user.getId());
+                }
+            }
+        }
         return new ResponseEntity<>(savedTask, HttpStatus.CREATED);
     }
     @RequestMapping(value = "/tasksDeleted/{taskId}", method = {RequestMethod.DELETE, RequestMethod.GET})
