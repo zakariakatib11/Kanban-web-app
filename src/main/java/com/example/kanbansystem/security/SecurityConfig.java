@@ -36,6 +36,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST,"/api/tasks").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE,"/api/tasksDeleted/**").hasRole("ADMIN")
 
+                .antMatchers(HttpMethod.GET,"/api/sprints/**").hasAnyRole("ADMIN","USER")
+                .antMatchers(HttpMethod.GET,"/api/sprintId/**").hasAnyRole("ADMIN","USER")
+                .antMatchers(HttpMethod.POST,"/api/sprints").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/api/sprintDeleted/**").hasRole("ADMIN")
+
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
