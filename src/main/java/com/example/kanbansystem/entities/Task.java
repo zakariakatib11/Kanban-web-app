@@ -8,7 +8,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = "users")
+@ToString(exclude = {"users", "sprints"})
+
 @Entity
 public class Task {
     @Id
@@ -20,9 +21,10 @@ public class Task {
     private TaskStatus status;
     private Integer estimation;
     @ManyToOne
-   // @JsonIgnore
     private Board board;
     @ManyToMany
-  // @JsonIgnore
     private List<User> users;
+    @ManyToMany
+    private List<Sprint> sprints;
+
 }

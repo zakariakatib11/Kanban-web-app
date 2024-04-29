@@ -1,7 +1,6 @@
 package com.example.kanbansystem.controller;
 
 import com.example.kanbansystem.entities.Board;
-import com.example.kanbansystem.entities.Task;
 import com.example.kanbansystem.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
