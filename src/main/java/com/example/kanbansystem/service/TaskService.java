@@ -25,5 +25,7 @@ public class TaskService {
     public Optional<Task> getTaskById(Long id) {
         return taskRepository.findById(id);
     }
-
+    public List<Task> getTasksByBoardId(Long boardId) {
+        return taskRepository.findByBoardId(boardId);
+    }
 }

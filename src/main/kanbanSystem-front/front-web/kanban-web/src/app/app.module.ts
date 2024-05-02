@@ -6,11 +6,17 @@ import { AppComponent } from './app.component';
 import { BoardComponent } from './components/board-list/board-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './components/home/home.component';
+import { TaskComponent } from './components/task/task.component';
+import { SprintComponent } from './components/sprint/sprint.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BoardComponent
+    BoardComponent,
+    HomeComponent,
+    TaskComponent,
+    SprintComponent
   ],
   imports: [
     BrowserModule,

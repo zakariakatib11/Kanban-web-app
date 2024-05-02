@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class TaskController {
     @Autowired
     private TaskService taskService;
@@ -65,6 +65,15 @@ public class TaskController {
         String result = taskService.deleteTaskById(taskId);
         if (result != null) {
             return new ResponseEntity<>(result, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    @GetMapping("/tasks/board/{boardId}")
+    public ResponseEntity<List<Task>> getTasksByBoardId(@PathVariable("boardId") Long boardId) {
+        List<Task> tasks = taskService.getTasksByBoardId(boardId);
+        if (tasks != null && !tasks.isEmpty()) {
+            return new ResponseEntity<>(tasks, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

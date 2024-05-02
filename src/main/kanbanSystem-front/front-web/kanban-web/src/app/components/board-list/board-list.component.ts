@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Board } from '../../models/Board';
 import { BoardService } from '../../services/board.service';
 
@@ -9,9 +10,8 @@ import { BoardService } from '../../services/board.service';
 })
 export class BoardComponent implements OnInit {
   boards: Board[] = [];
-  router: any;
 
-  constructor(private boardService: BoardService) { }
+  constructor(private router: Router, private boardService: BoardService) { }
 
   ngOnInit(): void {
     this.fetchBoards();
@@ -28,5 +28,7 @@ export class BoardComponent implements OnInit {
         }
       );
   }
-
+  showTasks(boardId: number): void {
+    this.router.navigate(['/tasks', 'board', boardId]);
+  }
 }

@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class SprintController {
     @Autowired
     private SprintService sprintService;
@@ -51,4 +51,5 @@ public class SprintController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
 }
