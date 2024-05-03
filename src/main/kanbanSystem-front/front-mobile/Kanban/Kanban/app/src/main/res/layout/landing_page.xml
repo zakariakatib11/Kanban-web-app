@@ -5,45 +5,68 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#6BC9D6"
-    tools:context=".introActivity">
+    android:background="@color/my_primary"
+    tools:context=".Main">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="-20dp">
 
         <TextView
-            android:id="@+id/textView2"
+
+            android:id="@+id/textView1"
             android:layout_width="match_parent"
-            android:layout_height="49dp"
+            android:layout_height="40dp"
             android:layout_centerHorizontal="true"
+            android:fontFamily="@font/inria_sans_bold"
             android:gravity="center"
             android:text="Kanban"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="29sp"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imageView"
-            android:layout_width="346dp"
-            android:layout_height="344dp"
-            android:layout_marginStart="33dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/image1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/image1" />
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:paddingBottom="20dp"
+            android:paddingTop="20dp"
+            android:layout_gravity="center">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <!-- Image in the back -->
+                <ImageView
+                    android:id="@+id/backImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/circle" />
+
+                <!-- Image in the front -->
+                <ImageView
+                    android:id="@+id/frontImage"
+                    android:layout_width="350dp"
+                    android:layout_height="350dp"
+                    android:src="@drawable/team_icon"
+                    android:layout_gravity="center"/>
+            </FrameLayout>
+
+
+        </LinearLayout>
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="32dp"
-            android:background="@drawable/white_background">
+            android:background="@drawable/white_background"
+            android:paddingTop="10dp"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -55,26 +78,53 @@
                     android:id="@+id/textView3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Empower teams to collaborate more effectively and adapt swiftly with Kanban."
+                    android:text="More Flexibility and team collaboration with kanban "
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="32sp"
                     android:textStyle="bold"
 
+
                     />
 
-                <ImageView
-                    android:id="@+id/imageView7"
+                <TextView
+                    android:id="@+id/textView5"
                     android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:src="@drawable/image2" />
+                    android:layout_height="wrap_content"
+                    android:fontFamily="cursive"
+                    android:text="More Flexibility and team collaboration with kanban "
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp">
+
+                    <ImageView
+                        android:id="@+id/imageView7"
+                        android:layout_width="127dp"
+                        android:layout_height="15dp"
+                        android:src="@drawable/image1"
+
+
+                        />
+
+                </LinearLayout>
+
 
                 <Button
-                    android:id="@+id/button4"
+                    android:id="@+id/getstarted"
                     android:layout_width="match_parent"
-                    android:layout_height="73dp"
+                    android:layout_height="44dp"
                     android:text="Get Started"
-                    android:textSize="25dp"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
 
             </LinearLayout>

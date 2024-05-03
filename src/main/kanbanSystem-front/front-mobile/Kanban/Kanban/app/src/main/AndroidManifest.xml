@@ -16,16 +16,19 @@
             android:name=".uppActivity"
             android:exported="false" />
         <activity
-            android:name=".upActivity"
+            android:name=".Login_main_controller"
             android:exported="false" />
         <activity
-            android:name=".signupActivity"
+            android:name=".verification_code_controller"
             android:exported="false" />
         <activity
-            android:name=".passActivity"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".introActivity"
+            android:name=".landing_page_controller"
+            android:exported="false" />
+        <activity
+            android:name=".Main"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

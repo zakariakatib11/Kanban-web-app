@@ -69,7 +69,7 @@ tools:context=".uppActivity">
             android:src="@drawable/login_icon1"
 
 
-            app:layout_constraintBottom_toTopOf="@+id/editTextText1"
+            app:layout_constraintBottom_toTopOf="@+id/username"
             app:layout_constraintEnd_toEndOf="parent"
 
             app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +78,7 @@ tools:context=".uppActivity">
         <EditText
 
 
-            android:id="@+id/editTextText1"
+            android:id="@+id/username"
             android:layout_width="350dp"
             android:layout_height="44dp"
             android:layout_marginTop="250dp"
@@ -89,7 +89,7 @@ tools:context=".uppActivity">
             android:ems="10"
             android:inputType="text"
             android:paddingStart="22dp"
-            android:paddingEnd="10dp"
+            android:paddingEnd="15dp"
             android:text="User name"
             android:textColor="@color/my_primary"
             android:textSize="20dp"
@@ -98,25 +98,25 @@ tools:context=".uppActivity">
             tools:ignore="MissingConstraints" />
 
         <EditText
-            android:id="@+id/editTextText2"
+            android:id="@+id/password"
             android:layout_width="350dp"
             android:layout_height="44dp"
             android:layout_marginTop="25dp"
             android:background="@drawable/border_login"
             android:drawableEnd="@drawable/lock_icon"
-            android:drawablePadding="10dp"
+            android:drawablePadding="15dp"
             android:ems="10"
             android:foregroundGravity="center"
             android:inputType="text"
             android:paddingStart="22dp"
-            android:paddingEnd="16dp"
+            android:paddingEnd="15dp"
             android:text="Password"
             android:textColor="@color/my_primary"
             android:textSize="20dp"
-            app:layout_constraintEnd_toEndOf="@+id/editTextText1"
+            app:layout_constraintEnd_toEndOf="@+id/username"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/editTextText1"
-            app:layout_constraintTop_toBottomOf="@+id/editTextText1"
+            app:layout_constraintStart_toStartOf="@+id/username"
+            app:layout_constraintTop_toBottomOf="@+id/username"
             tools:ignore="MissingConstraints" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -133,7 +133,7 @@ tools:context=".uppActivity">
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextText2"
+            app:layout_constraintTop_toBottomOf="@+id/password"
             tools:ignore="MissingConstraints" />
 
         <androidx.appcompat.widget.AppCompatButton

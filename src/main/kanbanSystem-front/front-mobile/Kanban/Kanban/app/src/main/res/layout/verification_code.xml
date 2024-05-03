@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#6BC9D6"
-    tools:context=".passActivity">
+    tools:context=".landing_page_controller">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

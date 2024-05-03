@@ -1,14 +1,13 @@
 package com.example.kanban;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-public class introActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
 
+public class verification_code_controller  extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sign_up);
+        setContentView(R.layout.verification_code);
     }
 }
