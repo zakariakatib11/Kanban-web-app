@@ -13,6 +13,8 @@ import java.util.Optional;
 public class BoardService {
     @Autowired
     private BoardRepository boardRepository;
+    @Autowired
+    private TaskService taskService;
     public Board getBoardByName(String name) {
         return boardRepository.findBoardByName(name);
     }
@@ -23,8 +25,12 @@ public class BoardService {
         return boardRepository.save(board);
     }
     public String deleteBoardById(Long id){
+        List<Task> tasks = taskService.getTasksByBoardId(id);
+        for (Task task : tasks) {
+            taskService.deleteTaskById(task.getId());
+        }
         boardRepository.deleteById(id);
-        return "Board with id "+id+" deleted successfully!";
+        return "Board with id "+id+" deleted successfully and his tasks";
     }
     public Optional<Board> getBoardById(Long id) {
         return boardRepository.findById(id);

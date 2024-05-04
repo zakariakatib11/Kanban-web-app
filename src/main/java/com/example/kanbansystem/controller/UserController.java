@@ -3,10 +3,10 @@ package com.example.kanbansystem.controller;
 import com.example.kanbansystem.entities.User;
 import com.example.kanbansystem.security.MyuserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -17,5 +17,14 @@ public class UserController {
     public String addUser(@RequestBody User user){
         myuserDetailsService.addNewUser(user);
         return "User added successfully!";
+    }
+    @DeleteMapping("/user/{username}")
+    public ResponseEntity<String> deleteUserByUsername(@PathVariable String username) {
+        myuserDetailsService.deleteUserByUsername(username);
+        return ResponseEntity.ok("User deleted successfully!");
+    }
+    @GetMapping("/Allusers")
+    public List<User> getAllUsers() {
+        return myuserDetailsService.getAllUsers();
     }
 }

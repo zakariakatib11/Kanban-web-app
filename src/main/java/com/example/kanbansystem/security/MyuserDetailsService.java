@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 @Service
 
@@ -36,8 +37,12 @@ public class MyuserDetailsService implements UserDetailsService {
                 user.getRoles());
         return userRepository.save(newUser);
     }
+    public void deleteUserByUsername(String username) {
+        Optional<User> user = userRepository.findByUsername(username);
+        user.ifPresent(userRepository::delete);
+    }
 
-
-
-
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
 }

@@ -9,6 +9,7 @@ import { SprintService } from 'src/app/services/sprint.service';
 })
 export class SprintComponent implements OnInit {
   sprints: Sprint[] = [];
+  alertMessage: string = '';
 
   constructor(private sprintService: SprintService) { }
 
@@ -17,14 +18,31 @@ export class SprintComponent implements OnInit {
   }
 
   fetchSprints(): void {
-    this.sprintService.getAllSprints()
-      .subscribe(
-        (sprints: Sprint[]) => {
-          this.sprints = sprints;
+    this.sprintService.getAllSprints().subscribe(
+      (sprints: Sprint[]) => {
+        this.sprints = sprints;
+      },
+      (error: any) => {
+        console.error('Error fetching sprints: ', error);
+      }
+    );
+  }
+
+  deleteSprint(sprintId: number): void {
+    if (confirm('Are you sure you want to delete this sprint?')) {
+      this.sprintService.deleteSprint(sprintId).subscribe(
+        () => {
+          // Remove the sprint from the local array
+          this.sprints = this.sprints.filter(sprint => sprint.id !== sprintId);
+          // Reset the alert message
+          this.alertMessage = '';
         },
         (error: any) => {
-          console.error('Error fetching sprints: ', error);
+          console.error('Error deleting sprint: ', error);
+          // Set the alert message
+          this.alertMessage = 'Error deleting sprint. Please try again.';
         }
       );
     }
+  }
 }
