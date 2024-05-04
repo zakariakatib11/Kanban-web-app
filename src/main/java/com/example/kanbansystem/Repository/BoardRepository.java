@@ -1,5 +1,6 @@
 package com.example.kanbansystem.Repository;
 
+
 import com.example.kanbansystem.entities.Board;
 import org.springframework.data.jpa.repository.JpaRepository;
 

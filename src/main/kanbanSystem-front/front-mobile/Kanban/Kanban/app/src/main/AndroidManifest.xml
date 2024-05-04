@@ -22,6 +22,9 @@
             android:name=".verification_code_controller"
             android:exported="false" />
         <activity
+            android:name=".dashboard_controller"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="false" />
         <activity

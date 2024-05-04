@@ -6,6 +6,8 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 public class Main extends AppCompatActivity {
@@ -31,4 +33,22 @@ public class Main extends AppCompatActivity {
         startActivity(intent);
         finish();  // Finish the current activity
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_profile) {
+            // Handle profile icon click
+            // You can open a profile activity or show a dialog for profile settings
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

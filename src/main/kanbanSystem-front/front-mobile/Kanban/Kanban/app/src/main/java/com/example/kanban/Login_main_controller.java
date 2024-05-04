@@ -54,7 +54,7 @@ public class Login_main_controller extends AppCompatActivity {
 
     // Method to transition to the next activity
     private void goToNextPage() {
-        Intent intent = new Intent(Login_main_controller.this, verification_code_controller.class);  // Ensure this is the correct class name
+        Intent intent = new Intent(Login_main_controller.this, dashboard_controller.class);  // Ensure this is the correct class name
         startActivity(intent);
         finish();
     }
