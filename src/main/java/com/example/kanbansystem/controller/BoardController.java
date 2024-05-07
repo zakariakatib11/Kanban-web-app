@@ -1,7 +1,10 @@
 package com.example.kanbansystem.controller;
 
 import com.example.kanbansystem.entities.Board;
+import com.example.kanbansystem.entities.User;
+import com.example.kanbansystem.security.MyuserDetailsService;
 import com.example.kanbansystem.service.BoardService;
+import com.example.kanbansystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +19,8 @@ public class BoardController {
 
     @Autowired
     private BoardService boardService;
+    @Autowired
+    private MyuserDetailsService userService;
     @GetMapping("/boards")
     public ResponseEntity<List<Board>> getAllBoard() {
         List<Board> boards = boardService.getAllBoard();
@@ -41,14 +46,15 @@ public class BoardController {
     }
     @PostMapping("boards")
     public ResponseEntity<Board> saveBoard(@RequestBody Board board) {
+        User adminUser = userService.findUserByUsername("admin");
+        board.setUser(adminUser);
         Board savedBoard = boardService.saveBoard(board);
         return new ResponseEntity<>(savedBoard, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/boardsDeleted/{boardId}",method = {RequestMethod.DELETE,RequestMethod.GET})
+    @DeleteMapping("/boardsDeleted/{boardId}")
     public ResponseEntity<String> deleteBoardById(@PathVariable("boardId") Long boardId) {
         String result = boardService.deleteBoardById(boardId);
         return new ResponseEntity<>(result, HttpStatus.OK);
-
     }
 }

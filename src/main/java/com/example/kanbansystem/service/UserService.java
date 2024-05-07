@@ -5,6 +5,8 @@ import com.example.kanbansystem.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
     @Autowired
@@ -18,4 +20,5 @@ public class UserService {
 
         return userRepository.save(new_user);
     }
+
 }

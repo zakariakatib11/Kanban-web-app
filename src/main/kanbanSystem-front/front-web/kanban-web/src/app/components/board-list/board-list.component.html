@@ -9,6 +9,7 @@
       <p>{{ board.description }}</p>
       <p>Date Created: {{ board.dateCreation | date:'dd/MM/yyyy'}}</p>
       <p>User: {{ board.user.username }}</p>
+      <button class="btn-delete" (click)="deleteBoard(board.id)">Delete</button>
     </div>
   </div>
 </div>

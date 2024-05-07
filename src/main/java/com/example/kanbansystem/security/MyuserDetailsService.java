@@ -7,6 +7,7 @@ import org.apache.el.parser.AstTrue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +23,14 @@ public class MyuserDetailsService implements UserDetailsService {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public UserDetails loadUserByUsername(String username){
-        Optional<User> user = userRepository.findByUsername(username);
-        return user.map(App_user::new).get();
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found with username: " + username);
+        }
+        return new App_user(user);
     }
+
     public User addNewUser(User user) {
         user.setRoles("ROLE_USER");
         user.setActive(true);
@@ -37,12 +42,11 @@ public class MyuserDetailsService implements UserDetailsService {
                 user.getRoles());
         return userRepository.save(newUser);
     }
-    public void deleteUserByUsername(String username) {
-        Optional<User> user = userRepository.findByUsername(username);
-        user.ifPresent(userRepository::delete);
-    }
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
+    }
+    public User findUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }

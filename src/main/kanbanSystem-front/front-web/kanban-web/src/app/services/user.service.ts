@@ -11,4 +11,9 @@ export class UserService {
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>('http://localhost:91/Allusers');
   }
+  private baseUrl = 'http://localhost:91/api/users';
+  getUserByUsername(username: string): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}?username=${username}`);
+  }
+ 
 }

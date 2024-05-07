@@ -1,3 +1,4 @@
+// BoardComponent
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Board } from '../../models/Board';
@@ -34,9 +35,26 @@ export class BoardComponent implements OnInit {
   }
 
   goToAddBoard(): void {
-    this.router.navigate(['/Addboard']);
+    this.router.navigate(['/addboard']);
   }
+
   goToSprint(): void {
     this.router.navigate(['/sprints']);
+  }
+
+  deleteBoard(boardId: number): void {
+    if (confirm('Are you sure you want to delete this board?')) {
+      this.boardService.deleteBoard(boardId)
+        .subscribe(
+          () => {
+            this.fetchBoards();
+            alert('Board deleted successfully.');
+          },
+          (error: any) => {
+            console.error('Error deleting board: ', error);
+            alert('Error deleting board. Please try again.');
+          }
+        );
+    }
   }
 }
