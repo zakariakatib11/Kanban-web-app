@@ -1,10 +1,12 @@
 <div class="container">
-<h2>{{ tasks.length ? tasks[0].board.name : 'Board Name' }}</h2>
+  <button class="add-task-button" (click)="navigateToAddTask()">Add Task</button>
+  <h2>{{ tasks.length ? tasks[0].board.name : 'Board Name' }}</h2>
   <div class="kanban-board">
     <!-- Todo Section -->
     <div class="kanban-column" (dragover)="onDragOver($event)">
       <h2>Todo</h2>
       <div class="card" *ngFor="let task of filterTasks(TaskStatus.TODO)" [attr.draggable]="true" (dragstart)="onDragStart($event, task)" (drop)="onDrop($event, TaskStatus.TODO)">
+        <a [routerLink]="['/task', task.id]">
         <strong>Name:</strong> {{ task.name }}<br>
         <strong>Description:</strong> {{ task.description }}<br>
         <strong>Estimation:</strong> {{ task.estimation }}<br>
@@ -20,12 +22,14 @@
           <li *ngFor="let sprint of task.sprints">End Date : {{ sprint.endDate | date:'dd/MM/yyyy' }}</li>
         </ul>
         <button class="delete-button" (click)="deleteTask(task.id)">Delete</button>
+        </a>
       </div>
     </div>
     <!-- In Progress Section -->
     <div class="kanban-column" (dragover)="onDragOver($event)">
       <h2>In Progress</h2>
       <div class="card" *ngFor="let task of filterTasks(TaskStatus.IN_PROGRESS)" [attr.draggable]="true" (dragstart)="onDragStart($event, task)" (drop)="onDrop($event, TaskStatus.IN_PROGRESS)">
+        <a [routerLink]="['/task', task.id]">
         <strong>Name:</strong> {{ task.name }}<br>
         <strong>Description:</strong> {{ task.description }}<br>
         <strong>Estimation:</strong> {{ task.estimation }}<br>
@@ -41,12 +45,14 @@
           <li *ngFor="let sprint of task.sprints">End Date : {{ sprint.endDate | date:'dd/MM/yyyy' }}</li>
         </ul>
         <button class="delete-button" (click)="deleteTask(task.id)">Delete</button>
+        </a>
       </div>
     </div>
     <!-- Done Section -->
     <div class="kanban-column" (dragover)="onDragOver($event)">
       <h2>Done</h2>
       <div class="card" *ngFor="let task of filterTasks(TaskStatus.DONE)" [attr.draggable]="true" (dragstart)="onDragStart($event, task)" (drop)="onDrop($event, TaskStatus.DONE)">
+        <a [routerLink]="['/task', task.id]">
         <strong>Name:</strong> {{ task.name }}<br>
         <strong>Description:</strong> {{ task.description }}<br>
         <strong>Estimation:</strong> {{ task.estimation }}<br>
@@ -62,6 +68,7 @@
           <li *ngFor="let sprint of task.sprints">End Date : {{ sprint.endDate | date:'dd/MM/yyyy' }}</li>
         </ul>
         <button class="delete-button" (click)="deleteTask(task.id)">Delete</button>
+        </a>
       </div>
     </div>
   </div>

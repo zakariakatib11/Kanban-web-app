@@ -12,16 +12,18 @@ import { TaskStatus } from 'src/app/models/TaskStatus';
 export class TaskComponent implements OnInit {
   tasks: Task[] = [];
   TaskStatus = TaskStatus;
-
+  boardId: number |any;
   constructor(
     private router: Router, 
     private route: ActivatedRoute,
     private taskService: TaskService
   ) { }
 
-  Id!: number;
   ngOnInit(): void {
     this.fetchTasks();
+    this.boardId = this.route.snapshot.params['boardId'];
+
+    
   }
 
   onDragStart(event: DragEvent, task: Task) {
@@ -73,6 +75,13 @@ export class TaskComponent implements OnInit {
           this.fetchTasks();
         }
       );
+    }
+  }
+  navigateToAddTask(): void {
+    if (this.boardId !== null) {
+      this.router.navigate(['/board', this.boardId, 'addtask']);
+    } else {
+      console.error('Board ID is null');
     }
   }
 }

@@ -21,10 +21,7 @@
   </div>
   <div>
     <label for="board">Board:</label>
-    <select id="board" name="board" [(ngModel)]="selectedBoardId" disabled>
-      <option [ngValue]="null" disabled>Select Board</option>
-      <option *ngFor="let board of boards" [value]="board.id">{{ board.name }}</option>
-    </select>
+    <input type="text" id="board" name="board" [(ngModel)]="selectedBoardId" disabled>
   </div>
   <div>
     <label for="users">Users:</label>

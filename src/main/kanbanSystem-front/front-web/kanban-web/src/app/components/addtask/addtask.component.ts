@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'; // Import ActivatedRoute
+import { ActivatedRoute } from '@angular/router'; 
 import { Task } from 'src/app/models/Task';
-import { TaskStatus } from 'src/app/models/TaskStatus';
 import { Board } from 'src/app/models/Board';
 import { Sprint } from 'src/app/models/Sprint';
 import { User } from 'src/app/models/User';
@@ -25,9 +24,10 @@ export class AddtaskComponent implements OnInit {
   selectedSprintIds: number[] = [];
   users: User[] = [];
   selectedUserIds: number[] = [];
+  
 
   constructor(
-    private route: ActivatedRoute, // Inject ActivatedRoute
+    private route: ActivatedRoute,
     private taskService: TaskService,
     private boardService: BoardService,
     private sprintService: SprintService,
@@ -35,14 +35,11 @@ export class AddtaskComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Fetch boards, sprints, and users
     this.fetchBoards();
     this.fetchSprints();
     this.fetchUsers();
-
-    // Get board ID from URL
     this.route.params.subscribe(params => {
-      this.selectedBoardId = +params['boardId']; // Convert to number
+      this.selectedBoardId = +params['boardId'];
     });
   }
 
@@ -50,7 +47,6 @@ export class AddtaskComponent implements OnInit {
     this.boardService.getAllBoards().subscribe(
       (boards: Board[]) => {
         this.boards = boards;
-        console.log('Fetched boards:', this.boards); // Add this line
       },
       (error: any) => {
         console.error('Error fetching boards: ', error);
@@ -82,18 +78,11 @@ export class AddtaskComponent implements OnInit {
 
   onSubmit(): void {
     console.log('Selected board ID:', this.selectedBoardId);
-    console.log('Boards:', this.boards);
-  
-    // Check if selectedBoardId is null or undefined
-    if (this.selectedBoardId === null || this.selectedBoardId === undefined) {
+      if (this.selectedBoardId === null || this.selectedBoardId === undefined) {
       console.error('Selected board ID is null or undefined');
       return;
     }
-  
-    // Find the selected board
-    const selectedBoard = this.boards.find(board => board.id === this.selectedBoardId);
-    
-    // Check if selected board is found
+      const selectedBoard = this.boards.find(board => board.id === this.selectedBoardId);  
     if (!selectedBoard) {
       console.error('Selected board not found');
       return;
@@ -119,7 +108,6 @@ export class AddtaskComponent implements OnInit {
       (response: Task) => {
         console.log('Task added successfully:', response);
         this.taskForm.resetForm();
-        this.selectedBoardId = null;
         this.selectedSprintIds = [];
         this.selectedUserIds = [];
       },
