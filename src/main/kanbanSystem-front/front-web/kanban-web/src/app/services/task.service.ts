@@ -28,4 +28,8 @@ export class TaskService {
   getTask(taskId: number): Observable<any> {
     return this.http.get<Task>(`http://localhost:91/api/tasksId/${taskId}`);
   }
+  
+  updateTask(task: Task): Observable<Task> {
+    return this.http.post<Task>(this.apiUrl, task);  }
+
 }

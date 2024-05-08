@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'; 
+import { ActivatedRoute, Router } from '@angular/router'; 
 import { Task } from 'src/app/models/Task';
 import { Board } from 'src/app/models/Board';
 import { Sprint } from 'src/app/models/Sprint';
@@ -31,7 +31,8 @@ export class AddtaskComponent implements OnInit {
     private taskService: TaskService,
     private boardService: BoardService,
     private sprintService: SprintService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -110,6 +111,7 @@ export class AddtaskComponent implements OnInit {
         this.taskForm.resetForm();
         this.selectedSprintIds = [];
         this.selectedUserIds = [];
+        this.router.navigate(['/boards']);
       },
       (error: any) => {
         console.error('Error adding task:', error);

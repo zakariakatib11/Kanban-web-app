@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BoardDTO } from 'src/app/models/BoardDTO';
 import { BoardService } from 'src/app/services/board.service';
 
@@ -15,7 +16,8 @@ export class AddboardComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private boardService: BoardService
+    private boardService: BoardService,
+    private router: Router
   ) {
     this.boardForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -38,6 +40,7 @@ export class AddboardComponent implements OnInit {
         response => {
           this.successMessage = "Board added successfully.";
           this.boardForm.reset();
+          this.router.navigate(['/boards']);
         },
         error => {
           this.errorMessage = "Error adding board. Please try again.";

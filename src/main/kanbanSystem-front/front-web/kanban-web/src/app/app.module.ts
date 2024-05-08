@@ -10,7 +10,6 @@ import { TaskComponent } from './components/task/task.component';
 import { SprintComponent } from './components/sprint/sprint.component';
 import { AddSprintComponent } from './components/addsprint/addsprint.component';
 import { AddboardComponent } from './components/addboard/addboard.component';
-import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AddtaskComponent } from './components/addtask/addtask.component';
 import { TaskDetailsComponent } from './components/taskdetails/taskdetails.component';
 
@@ -32,7 +31,7 @@ import { TaskDetailsComponent } from './components/taskdetails/taskdetails.compo
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    DragDropModule 
+ 
   ],
   providers: [],
   bootstrap: [AppComponent]

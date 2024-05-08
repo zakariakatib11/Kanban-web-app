@@ -1,0 +1,51 @@
+.card {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  max-width: 280px; /* Réduisez la largeur maximale du formulaire */
+  margin: 0 auto; /* Centrez le formulaire horizontalement */
+}
+
+.form-group {
+  margin-bottom: 6px; /* Réduisez l'espacement entre les groupes de formulaires */
+}
+
+label {
+  font-weight: bold;
+  display: block; /* Assurez-vous que les étiquettes apparaissent sur leur propre ligne */
+  margin-bottom: 3px; /* Ajoutez de l'espace entre l'étiquette et l'entrée */
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+  width: calc(100% - 20px); /* Soustrayez le rembourrage de la largeur pour tenir compte du modèle de boîte */
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 2px;
+  font-size: 13px; /* Réduisez la taille de la police */
+}
+
+select {
+  appearance: none; /* Supprimez la flèche par défaut dans select */
+}
+
+button {
+  margin-top: 16px; /* Augmentez l'espacement entre le formulaire et le bouton */
+  background-color: #001f3f;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px; /* Ajustez les dimensions du bouton */
+  font-size: 14px; /* Augmentez légèrement la taille de la police */
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
