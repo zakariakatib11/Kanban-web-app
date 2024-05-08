@@ -19,6 +19,7 @@ export class TaskComponent implements OnInit {
     private taskService: TaskService
   ) { }
 
+  Id!: number;
   ngOnInit(): void {
     this.fetchTasks();
   }
@@ -63,6 +64,15 @@ export class TaskComponent implements OnInit {
         (error: any) => {
           console.error('Error updating task status: ', error);
         }
+      );  
+  }
+  deleteTask(taskId: number): void {
+    if (confirm('Are you sure you want to delete this task?')) {
+      this.taskService.deleteTask(taskId).subscribe(
+        () => {
+          this.fetchTasks();
+        }
       );
+    }
   }
 }

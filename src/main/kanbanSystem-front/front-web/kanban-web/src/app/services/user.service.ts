@@ -8,12 +8,12 @@ import { User } from '../models/User';
 })
 export class UserService {
   constructor(private http: HttpClient) { }
-  getUsers(): Observable<User[]> {
+  getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>('http://localhost:91/Allusers');
   }
   private baseUrl = 'http://localhost:91/api/users';
   getUserByUsername(username: string): Observable<User> {
     return this.http.get<User>(`${this.baseUrl}?username=${username}`);
   }
- 
+
 }

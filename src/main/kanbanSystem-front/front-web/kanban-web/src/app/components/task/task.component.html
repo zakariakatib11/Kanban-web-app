@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>{{ tasks.length ? tasks[0].board.name : 'Board Name' }}</h2>
+<h2>{{ tasks.length ? tasks[0].board.name : 'Board Name' }}</h2>
   <div class="kanban-board">
     <!-- Todo Section -->
     <div class="kanban-column" (dragover)="onDragOver($event)">
@@ -19,6 +19,7 @@
           <li *ngFor="let sprint of task.sprints">Start date : {{ sprint.startDate | date:'dd/MM/yyyy' }}</li>
           <li *ngFor="let sprint of task.sprints">End Date : {{ sprint.endDate | date:'dd/MM/yyyy' }}</li>
         </ul>
+        <button class="delete-button" (click)="deleteTask(task.id)">Delete</button>
       </div>
     </div>
     <!-- In Progress Section -->
@@ -39,6 +40,7 @@
           <li *ngFor="let sprint of task.sprints">Start date : {{ sprint.startDate | date:'dd/MM/yyyy' }}</li>
           <li *ngFor="let sprint of task.sprints">End Date : {{ sprint.endDate | date:'dd/MM/yyyy' }}</li>
         </ul>
+        <button class="delete-button" (click)="deleteTask(task.id)">Delete</button>
       </div>
     </div>
     <!-- Done Section -->
@@ -59,6 +61,7 @@
           <li *ngFor="let sprint of task.sprints">Start date : {{ sprint.startDate | date:'dd/MM/yyyy' }}</li>
           <li *ngFor="let sprint of task.sprints">End Date : {{ sprint.endDate | date:'dd/MM/yyyy' }}</li>
         </ul>
+        <button class="delete-button" (click)="deleteTask(task.id)">Delete</button>
       </div>
     </div>
   </div>

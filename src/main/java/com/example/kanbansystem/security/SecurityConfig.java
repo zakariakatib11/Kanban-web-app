@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST,"/user").permitAll()
                 //hasRole("ADMIN")
-
+                .antMatchers(HttpMethod.GET,"/Allusers").permitAll()
 
                 .antMatchers(HttpMethod.GET,"/api/boards/**").permitAll()
                 //hasAnyRole("ADMIN","USER")
@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/api/taskId/**").permitAll()
                 //hasAnyRole("ADMIN","USER")
                 .antMatchers(HttpMethod.POST,"/api/tasks").permitAll()
-                .antMatchers(HttpMethod.PUT,"/api/Tasks/**").permitAll()
+                .antMatchers(HttpMethod.PUT,"/api/Tasks/**/status").permitAll()
                 //hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE,"/api/tasksDeleted/**").permitAll()
                 //hasRole("ADMIN")

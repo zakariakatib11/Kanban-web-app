@@ -1,0 +1,42 @@
+<form (ngSubmit)="onSubmit()" #taskForm="ngForm">
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" [(ngModel)]="taskForm.value.name" required>
+  </div>
+  <div>
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" [(ngModel)]="taskForm.value.description" required></textarea>
+  </div>
+  <div>
+    <label for="status">Status:</label>
+    <select id="status" name="status" [(ngModel)]="taskForm.value.status" required>
+      <option value="TODO">TODO</option>
+      <option value="IN_PROGRESS">IN_PROGRESS</option>
+      <option value="DONE">DONE</option>
+    </select>
+  </div>
+  <div>
+    <label for="estimation">Estimation:</label>
+    <input type="number" id="estimation" name="estimation" [(ngModel)]="taskForm.value.estimation" required>
+  </div>
+  <div>
+    <label for="board">Board:</label>
+    <select id="board" name="board" [(ngModel)]="selectedBoardId" disabled>
+      <option [ngValue]="null" disabled>Select Board</option>
+      <option *ngFor="let board of boards" [value]="board.id">{{ board.name }}</option>
+    </select>
+  </div>
+  <div>
+    <label for="users">Users:</label>
+    <select id="users" name="users" [(ngModel)]="selectedUserIds" required>
+      <option *ngFor="let user of users" [value]="user.id">{{ user.username }}</option>
+    </select>
+  </div>
+  <div>
+    <label for="sprints">Sprints:</label>
+    <select id="sprints" name="sprints" [(ngModel)]="selectedSprintIds" required>
+      <option *ngFor="let sprint of sprints" [value]="sprint.id">{{ sprint.name }}</option>
+    </select>
+  </div>
+  <button type="submit" [disabled]="!taskForm.valid">Add Task</button>
+</form>

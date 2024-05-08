@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BoardComponent } from './components/board-list/board-list.component';
@@ -12,6 +11,8 @@ import { SprintComponent } from './components/sprint/sprint.component';
 import { AddSprintComponent } from './components/addsprint/addsprint.component';
 import { AddboardComponent } from './components/addboard/addboard.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { AddtaskComponent } from './components/addtask/addtask.component';
+import { TaskdetailsComponent } from './components/taskdetails/taskdetails.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     TaskComponent,
     SprintComponent,
     AddSprintComponent,
-    AddboardComponent
+    AddboardComponent,
+    AddtaskComponent,
+    TaskdetailsComponent
   ],
   imports: [
     BrowserModule,

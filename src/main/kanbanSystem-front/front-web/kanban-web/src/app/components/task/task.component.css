@@ -69,3 +69,15 @@ button {
 button:hover {
   background-color: #27ae60;
 }
+.delete-button {
+  color: white;
+  background-color: red;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.delete-button:hover {
+  background-color: darkred;
+}
