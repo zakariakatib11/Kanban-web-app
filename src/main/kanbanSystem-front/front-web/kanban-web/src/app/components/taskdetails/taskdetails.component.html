@@ -1,1 +1,23 @@
-<p>taskdetails works!</p>
+<div *ngIf="task" class="task-details">
+    <h2>Task Details</h2>
+    <div class="details">
+      <p><strong>Name:</strong> {{ task.name }}</p>
+      <p><strong>Description:</strong> {{ task.description }}</p>
+      <p><strong>Estimation:</strong> {{ task.estimation }}</p>
+      <p><strong>Status:</strong> {{ task.status }}</p>
+      <p><strong>Board:</strong> {{ task.board.name }}</p>
+      <p><strong>Users:</strong></p>
+      <ul>
+        <li *ngFor="let user of task.users">{{ user.username }}</li>
+      </ul>
+      <p><strong>Sprints:</strong></p>
+      <ul>
+        <li *ngFor="let sprint of task.sprints">
+          <p><strong>Name:</strong> {{ sprint.name }}</p>
+          <p><strong>Start Date:</strong> {{ sprint.startDate | date: 'medium' }}</p>
+          <p><strong>End Date:</strong> {{ sprint.endDate | date: 'medium' }}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  

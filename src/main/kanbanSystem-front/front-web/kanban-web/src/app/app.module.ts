@@ -12,7 +12,7 @@ import { AddSprintComponent } from './components/addsprint/addsprint.component';
 import { AddboardComponent } from './components/addboard/addboard.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { AddtaskComponent } from './components/addtask/addtask.component';
-import { TaskdetailsComponent } from './components/taskdetails/taskdetails.component';
+import { TaskDetailsComponent } from './components/taskdetails/taskdetails.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import { TaskdetailsComponent } from './components/taskdetails/taskdetails.compo
     AddSprintComponent,
     AddboardComponent,
     AddtaskComponent,
-    TaskdetailsComponent
+    TaskDetailsComponent
   ],
   imports: [
     BrowserModule,

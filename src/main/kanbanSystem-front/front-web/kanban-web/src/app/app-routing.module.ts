@@ -7,7 +7,7 @@ import { SprintComponent } from './components/sprint/sprint.component';
 import { AddSprintComponent } from './components/addsprint/addsprint.component';
 import { AddboardComponent } from './components/addboard/addboard.component';
 import { AddtaskComponent } from './components/addtask/addtask.component';
-import { TaskdetailsComponent } from './components/taskdetails/taskdetails.component';
+import { TaskDetailsComponent } from './components/taskdetails/taskdetails.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'addsprint', component: AddSprintComponent },
   { path: 'addboard', component: AddboardComponent },
   { path: 'board/:boardId/addtask', component: AddtaskComponent },
-  { path: 'task/:taskId', component: TaskdetailsComponent },
+  { path: 'task/:taskId', component: TaskDetailsComponent },
   { path: '**', component: HomeComponent }
 ];
 

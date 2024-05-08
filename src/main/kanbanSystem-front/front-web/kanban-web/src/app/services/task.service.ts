@@ -25,4 +25,7 @@ export class TaskService {
   deleteTask(taskId: number): Observable<any> {
     return this.http.delete(`http://localhost:91/api/tasksDeleted/${taskId}`);
   }
+  getTask(taskId: number): Observable<any> {
+    return this.http.get<Task>(`http://localhost:91/api/tasksId/${taskId}`);
+  }
 }
