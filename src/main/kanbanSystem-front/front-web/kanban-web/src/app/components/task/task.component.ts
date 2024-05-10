@@ -40,9 +40,17 @@ export class TaskComponent implements OnInit {
     console.log(status);
     const taskToUpdate = this.tasks.find(task => task.id === taskId);
     if (taskToUpdate) {
-      if (taskToUpdate.status === TaskStatus.TODO && status === TaskStatus.DONE) {
+      if (taskToUpdate.status === TaskStatus.TODO && status === TaskStatus.IN_PROGRESS) {
         this.updateTaskStatusToInProgress(taskId, status);
       } else if (taskToUpdate.status === TaskStatus.IN_PROGRESS && status === TaskStatus.DONE) {
+        this.updateTaskStatusToDone(taskId, status);
+      }else if (taskToUpdate.status === TaskStatus.IN_PROGRESS && status === TaskStatus.TODO) {
+        this.updateTaskStatusToDo(taskId, status);
+      }else if (taskToUpdate.status === TaskStatus.DONE && status === TaskStatus.TODO) {
+        this.updateTaskStatusToDo(taskId, status);
+      }else if (taskToUpdate.status === TaskStatus.DONE && status === TaskStatus.IN_PROGRESS) {
+        this.updateTaskStatusToInProgress(taskId, status);
+      }else if (taskToUpdate.status === TaskStatus.TODO && status === TaskStatus.DONE) {
         this.updateTaskStatusToDone(taskId, status);
       }
     } else {
@@ -90,7 +98,17 @@ export class TaskComponent implements OnInit {
         }
       );  
   }
-
+  updateTaskStatusToDo(taskId: number, status: TaskStatus): void {
+    this.taskService.updateTaskStatusToDo(taskId, status)
+      .subscribe(
+        () => {
+          this.fetchTasks();
+        },
+        (error: any) => {
+          console.error('Error updating task status: ', error);
+        }
+      );  
+  }
   deleteTask(taskId: number): void {
     if (confirm('Are you sure you want to delete this task?')) {
       this.taskService.deleteTask(taskId).subscribe();

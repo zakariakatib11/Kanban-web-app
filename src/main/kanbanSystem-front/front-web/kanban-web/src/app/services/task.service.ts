@@ -22,6 +22,9 @@ export class TaskService {
   updateTaskStatusToDone(taskId: number, status: TaskStatus): Observable<any> {
     return this.http.put(`${this.apiUrl}/${taskId}/status?status=DONE`, { status });
   }
+  updateTaskStatusToDo(taskId: number, status: TaskStatus): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${taskId}/status?status=TODO`, { status });
+  }
   addTask(task: Task): Observable<Task> {
     return this.http.post<Task>(this.apiUrl, task);
   }
