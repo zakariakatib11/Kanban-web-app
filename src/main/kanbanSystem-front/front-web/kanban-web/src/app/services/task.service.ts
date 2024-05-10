@@ -16,8 +16,11 @@ export class TaskService {
     return this.http.get<Task[]>(`${this.apiUrl}/board/${boardId}`);
   }
   
-  updateTaskStatus(taskId: number, status: TaskStatus): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${taskId}/status`, { status });
+  updateTaskStatusToInProgress(taskId: number, status: TaskStatus): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${taskId}/status?status=IN_PROGRESS`, { status });
+  }
+  updateTaskStatusToDone(taskId: number, status: TaskStatus): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${taskId}/status?status=DONE`, { status });
   }
   addTask(task: Task): Observable<Task> {
     return this.http.post<Task>(this.apiUrl, task);
@@ -28,7 +31,6 @@ export class TaskService {
   getTask(taskId: number): Observable<any> {
     return this.http.get<Task>(`http://localhost:91/api/tasksId/${taskId}`);
   }
-  
   updateTask(task: Task): Observable<Task> {
     return this.http.post<Task>(this.apiUrl, task);  }
 

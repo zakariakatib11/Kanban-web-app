@@ -19,7 +19,6 @@ export class TaskComponent implements OnInit {
     private route: ActivatedRoute,
     private taskService: TaskService
   ) { }
-
   ngOnInit(): void {
     this.fetchTasks();
     this.boardId = this.route.snapshot.params['boardId'];
@@ -32,25 +31,31 @@ export class TaskComponent implements OnInit {
       dropdownContent.classList.toggle('show');
     }
   }
-
   onDragStart(event: DragEvent, task: Task) {
     event.dataTransfer!.setData('text/plain', JSON.stringify(task));
   }
-
   onDrop(event: DragEvent, status: TaskStatus) {
     event.preventDefault();
     const taskId = JSON.parse(event.dataTransfer!.getData('text/plain')).id;
-    this.updateTaskStatus(taskId, status);
+    console.log(status);
+    const taskToUpdate = this.tasks.find(task => task.id === taskId);
+    if (taskToUpdate) {
+      if (taskToUpdate.status === TaskStatus.TODO && status === TaskStatus.DONE) {
+        this.updateTaskStatusToInProgress(taskId, status);
+      } else if (taskToUpdate.status === TaskStatus.IN_PROGRESS && status === TaskStatus.DONE) {
+        this.updateTaskStatusToDone(taskId, status);
+      }
+    } else {
+      console.error('Task not found with ID: ', taskId);
+    }
   }
 
   onDragOver(event: DragEvent) {
     event.preventDefault();
   }
-
   filterTasks(status: TaskStatus): Task[] {
     return this.tasks.filter(task => task.status === status);
   }
-
   fetchTasks(): void {
     const boardId = this.route.snapshot.params['boardId'];
     this.taskService.getTasksByBoardId(boardId)
@@ -63,9 +68,19 @@ export class TaskComponent implements OnInit {
         }
       );
   }
-
-  updateTaskStatus(taskId: number, status: TaskStatus): void {
-    this.taskService.updateTaskStatus(taskId, status)
+  updateTaskStatusToInProgress(taskId: number, status: TaskStatus): void {
+    this.taskService.updateTaskStatusToInProgress(taskId, status)
+      .subscribe(
+        () => {
+          this.fetchTasks();
+        },
+        (error: any) => {
+          console.error('Error updating task status: ', error);
+        }
+      );  
+  }
+  updateTaskStatusToDone(taskId: number, status: TaskStatus): void {
+    this.taskService.updateTaskStatusToDone(taskId, status)
       .subscribe(
         () => {
           this.fetchTasks();
@@ -78,11 +93,8 @@ export class TaskComponent implements OnInit {
 
   deleteTask(taskId: number): void {
     if (confirm('Are you sure you want to delete this task?')) {
-      this.taskService.deleteTask(taskId).subscribe(
-        () => {
-          this.fetchTasks();
-        }
-      );
+      this.taskService.deleteTask(taskId).subscribe();
+      this.tasks = this.tasks.filter(task => task.id !== taskId);
     }
   }
 

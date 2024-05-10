@@ -32,9 +32,7 @@ export class SprintComponent implements OnInit {
     if (confirm('Are you sure you want to delete this sprint?')) {
       this.sprintService.deleteSprint(sprintId).subscribe(
         () => {
-          // Remove the sprint from the local array
           this.sprints = this.sprints.filter(sprint => sprint.id !== sprintId);
-          // Reset the alert message
           this.alertMessage = '';
         },
         (error: any) => {

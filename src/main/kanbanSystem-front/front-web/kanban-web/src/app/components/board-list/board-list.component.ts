@@ -44,18 +44,9 @@ export class BoardComponent implements OnInit {
 
   deleteBoard(boardId: number): void {
     if (confirm('Are you sure you want to delete this board?')) {
-      this.boardService.deleteBoard(boardId)
-        .subscribe(
-          () => {
-            this.fetchBoards();
-          
-          },
-          (error: any) => {
-            alert('Board deleted successfully.');
-            this.router.navigate(['/boards']);
 
-          }
-        );
+      this.boardService.deleteBoard(boardId).subscribe();
+      this.boards = this.boards.filter(board => board.id !== boardId);
     }
   }
 }

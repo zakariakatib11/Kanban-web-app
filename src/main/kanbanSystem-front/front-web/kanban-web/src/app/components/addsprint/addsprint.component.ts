@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SprintService } from '../../services/sprint.service';
 import { Sprint } from '../../models/Sprint';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-sprint',
@@ -15,6 +16,7 @@ export class AddSprintComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private router: Router,
     private sprintService: SprintService) {
     this.addSprintForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -35,15 +37,8 @@ export class AddSprintComponent implements OnInit {
         endDate: this.addSprintForm.value.endDate
       };
 
-      this.sprintService.addSprint(sprintData).subscribe(
-        response => {
-          this.successMessage = "Sprint added successfully.";
-          this.addSprintForm.reset();
-        },
-        error => {
-          this.errorMessage = "Error adding sprint. Please try again.";
-        }
-      );
+      this.sprintService.addSprint(sprintData).subscribe();
+      this.router.navigate(['/sprints']);
     }
   }
 }

@@ -20,6 +20,7 @@ export class AddtaskComponent implements OnInit {
 
   boards: Board[] = [];
   selectedBoardId: number | null = null;
+  selectedBoardName: string | null = null;
   sprints: Sprint[] = [];
   selectedSprintIds: number[] = [];
   users: User[] = [];
@@ -48,12 +49,21 @@ export class AddtaskComponent implements OnInit {
     this.boardService.getAllBoards().subscribe(
       (boards: Board[]) => {
         this.boards = boards;
+        if (this.selectedBoardId !== null && this.selectedBoardId !== undefined) {
+          const selectedBoard = this.boards.find(board => board.id === this.selectedBoardId);
+          if (selectedBoard) {
+            this.selectedBoardName = selectedBoard.name;
+          } else {
+            console.error('Selected board not found');
+          }
+        }
       },
       (error: any) => {
         console.error('Error fetching boards: ', error);
       }
     );
   }
+  
 
   fetchSprints(): void {
     this.sprintService.getAllSprints().subscribe(
@@ -79,11 +89,12 @@ export class AddtaskComponent implements OnInit {
 
   onSubmit(): void {
     console.log('Selected board ID:', this.selectedBoardId);
-      if (this.selectedBoardId === null || this.selectedBoardId === undefined) {
+    if (this.selectedBoardId === null || this.selectedBoardId === undefined) {
       console.error('Selected board ID is null or undefined');
       return;
     }
-      const selectedBoard = this.boards.find(board => board.id === this.selectedBoardId);  
+
+    const selectedBoard = this.boards.find(board => board.id === this.selectedBoardId);  
     if (!selectedBoard) {
       console.error('Selected board not found');
       return;
@@ -111,7 +122,7 @@ export class AddtaskComponent implements OnInit {
         this.taskForm.resetForm();
         this.selectedSprintIds = [];
         this.selectedUserIds = [];
-        this.router.navigate(['/boards']);
+        this.router.navigate(['/tasks/board',this.selectedBoardId]);
       },
       (error: any) => {
         console.error('Error adding task:', error);

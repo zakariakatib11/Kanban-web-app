@@ -1,15 +1,17 @@
 <h2>List of Boards</h2>
 
 <div class="card-container">
-  <div class="card" *ngFor="let board of boards" (click)="showTasks(board.id)">
+  <div class="card" *ngFor="let board of boards">
     <div class="card-header">
       <h3>{{ board.name }}</h3>
     </div>
     <div class="card-content">
+      <div (click)="showTasks(board.id)">
       <p>{{ board.description }}</p>
       <p>Date Created: {{ board.dateCreation | date:'dd/MM/yyyy'}}</p>
       <p>Admin: {{ board.user.username }}</p>
-      <button class="btn-delete" (click)="deleteBoard(board.id)">Delete</button>
+    </div>
+    <button class="btn-delete" (click)="deleteBoard(board.id)">Delete</button>
     </div>
   </div>
 </div>

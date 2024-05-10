@@ -41,9 +41,6 @@ export class AddboardComponent implements OnInit {
           this.successMessage = "Board added successfully.";
           this.boardForm.reset();
           this.router.navigate(['/boards']);
-        },
-        error => {
-          this.errorMessage = "Error adding board. Please try again.";
         }
       );
     }
