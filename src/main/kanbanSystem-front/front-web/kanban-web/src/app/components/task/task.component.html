@@ -1,75 +1,59 @@
 <div class="container">
-  <button class="add-task-button" (click)="navigateToAddTask()">Add Task</button>
-  <h2>{{ tasks.length ? tasks[0].board.name : 'Board Name' }}</h2>
+  
+  <h3>{{ tasks.length ? tasks[0].board.name : 'Board Name' }}</h3>
   <div class="kanban-board">
     <!-- Todo Section -->
     <div class="kanban-column" (dragover)="onDragOver($event)">
-      <h2>Todo</h2>
+      <h2>To Do</h2>
       <div class="card" *ngFor="let task of filterTasks(TaskStatus.TODO)" [attr.draggable]="true" (dragstart)="onDragStart($event, task)" (drop)="onDrop($event, TaskStatus.TODO)">
-        <a [routerLink]="['/task', task.id]">
-        <strong>Name:</strong> {{ task.name }}<br>
-        <strong>Description:</strong> {{ task.description }}<br>
-        <strong>Estimation:</strong> {{ task.estimation }}<br>
-        <strong>Status:</strong> {{ task.status }}<br>
-        <strong>Users:</strong>
-        <ul>
-          <li *ngFor="let user of task.users">{{ user.username }}</li>
-        </ul>
-        <strong>Sprints:</strong>
-        <ul>
-          <li *ngFor="let sprint of task.sprints">Name : {{ sprint.name }}</li>
-          <li *ngFor="let sprint of task.sprints">Start date : {{ sprint.startDate | date:'dd/MM/yyyy' }}</li>
-          <li *ngFor="let sprint of task.sprints">End Date : {{ sprint.endDate | date:'dd/MM/yyyy' }}</li>
-        </ul>
-        <button class="delete-button" (click)="deleteTask(task.id)">Delete</button>
-        </a>
+        <div class="card-header">
+          <strong>{{ task.name }}</strong><br>  
+          <div class="dropdown">
+            <button class="dropdown-button" (click)="toggleDropdown($event)">...</button>
+            <div class="dropdown-content">
+              <a (click)="deleteTask(task.id)">Delete</a>
+              <a [routerLink]="['/task', task.id]">Details</a>
+            </div>
+          </div>
+        </div>  
       </div>
+      <button class="add-task-button" (click)="navigateToAddTask()">Add Task</button>
     </div>
     <!-- In Progress Section -->
     <div class="kanban-column" (dragover)="onDragOver($event)">
       <h2>In Progress</h2>
       <div class="card" *ngFor="let task of filterTasks(TaskStatus.IN_PROGRESS)" [attr.draggable]="true" (dragstart)="onDragStart($event, task)" (drop)="onDrop($event, TaskStatus.IN_PROGRESS)">
-        <a [routerLink]="['/task', task.id]">
-        <strong>Name:</strong> {{ task.name }}<br>
-        <strong>Description:</strong> {{ task.description }}<br>
-        <strong>Estimation:</strong> {{ task.estimation }}<br>
-        <strong>Status:</strong> {{ task.status }}<br>
-        <strong>Users:</strong>
-        <ul>
-          <li *ngFor="let user of task.users">{{ user.username }}</li>
-        </ul>
-        <strong>Sprints:</strong>
-        <ul>
-          <li *ngFor="let sprint of task.sprints">Name : {{ sprint.name }}</li>
-          <li *ngFor="let sprint of task.sprints">Start date : {{ sprint.startDate | date:'dd/MM/yyyy' }}</li>
-          <li *ngFor="let sprint of task.sprints">End Date : {{ sprint.endDate | date:'dd/MM/yyyy' }}</li>
-        </ul>
-        <button class="delete-button" (click)="deleteTask(task.id)">Delete</button>
-        </a>
+        <div class="card-header">
+          <strong>{{ task.name }}</strong><br>  
+          <div class="dropdown">
+            <button class="dropdown-button" (click)="toggleDropdown($event)">...</button>
+            <div class="dropdown-content">
+              <a (click)="deleteTask(task.id)">Delete</a>
+              <a [routerLink]="['/task', task.id]">Details</a>
+            </div>
+          </div>
+        </div>  
       </div>
+      
+      <button class="add-task-button" (click)="navigateToAddTask()"> Add Task </button>
     </div>
     <!-- Done Section -->
-    <div class="kanban-column" (dragover)="onDragOver($event)">
-      <h2>Done</h2>
-      <div class="card" *ngFor="let task of filterTasks(TaskStatus.DONE)" [attr.draggable]="true" (dragstart)="onDragStart($event, task)" (drop)="onDrop($event, TaskStatus.DONE)">
-        <a [routerLink]="['/task', task.id]">
-        <strong>Name:</strong> {{ task.name }}<br>
-        <strong>Description:</strong> {{ task.description }}<br>
-        <strong>Estimation:</strong> {{ task.estimation }}<br>
-        <strong>Status:</strong> {{ task.status }}<br>
-        <strong>Users:</strong>
-        <ul>
-          <li *ngFor="let user of task.users">{{ user.username }}</li>
-        </ul>
-        <strong>Sprints:</strong>
-        <ul>
-          <li *ngFor="let sprint of task.sprints">Name : {{ sprint.name }}</li>
-          <li *ngFor="let sprint of task.sprints">Start date : {{ sprint.startDate | date:'dd/MM/yyyy' }}</li>
-          <li *ngFor="let sprint of task.sprints">End Date : {{ sprint.endDate | date:'dd/MM/yyyy' }}</li>
-        </ul>
-        <button class="delete-button" (click)="deleteTask(task.id)">Delete</button>
-        </a>
+      <div class="kanban-column" (dragover)="onDragOver($event)">
+        <h2>Done</h2>
+        <div class="card" *ngFor="let task of filterTasks(TaskStatus.DONE)" [attr.draggable]="true" (dragstart)="onDragStart($event, task)" (drop)="onDrop($event, TaskStatus.DONE)">
+          <div class="card-header">
+            <strong>{{ task.name }}</strong><br>  
+            <div class="dropdown">
+              <button class="dropdown-button" (click)="toggleDropdown($event)">...</button>
+              <div class="dropdown-content">
+                <a (click)="deleteTask(task.id)">Delete</a>
+                <a [routerLink]="['/task', task.id]">Details</a>
+              </div>
+            </div>
+          </div>  
+        </div>
+        <button class="add-task-button" (click)="navigateToAddTask()">Add Task</button>
       </div>
-    </div>
+      
   </div>
 </div>

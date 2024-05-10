@@ -21,6 +21,18 @@
         <option value="DONE">DONE</option>
       </select>
     </div>
+    <div class="form-group">
+      <label for="users">Users:</label>
+      <select id="users" name="users" [(ngModel)]="selectedUserIds" required>
+        <option *ngFor="let user of users" [value]="user.id">{{ user.username }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="sprints">Sprints:</label>
+      <select id="sprints" name="sprints" [(ngModel)]="selectedSprintIds" required>
+        <option *ngFor="let sprint of sprints" [value]="sprint.id">{{ sprint.name }}</option>
+      </select>
+    </div>
     <button class="btn btn-primary" (click)="updateTask()">Save Changes</button>
   </div>
 </div>

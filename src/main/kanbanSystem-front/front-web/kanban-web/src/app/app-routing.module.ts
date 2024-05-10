@@ -5,9 +5,9 @@ import { HomeComponent } from './components/home/home.component';
 import { TaskComponent } from './components/task/task.component';
 import { SprintComponent } from './components/sprint/sprint.component';
 import { AddSprintComponent } from './components/addsprint/addsprint.component';
-import { AddboardComponent } from './components/addboard/addboard.component';
 import { AddtaskComponent } from './components/addtask/addtask.component';
 import { TaskDetailsComponent } from './components/taskdetails/taskdetails.component';
+import { AddboardComponent } from './components/addboard/addboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },

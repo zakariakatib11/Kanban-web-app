@@ -12,7 +12,8 @@ import { TaskStatus } from 'src/app/models/TaskStatus';
 export class TaskComponent implements OnInit {
   tasks: Task[] = [];
   TaskStatus = TaskStatus;
-  boardId: number |any;
+  boardId: number | any;
+  
   constructor(
     private router: Router, 
     private route: ActivatedRoute,
@@ -22,8 +23,14 @@ export class TaskComponent implements OnInit {
   ngOnInit(): void {
     this.fetchTasks();
     this.boardId = this.route.snapshot.params['boardId'];
+  }
 
-    
+  toggleDropdown(event: MouseEvent) {
+    event.stopPropagation();
+    const dropdownContent = (event.currentTarget as HTMLElement).nextElementSibling;
+    if (dropdownContent) {
+      dropdownContent.classList.toggle('show');
+    }
   }
 
   onDragStart(event: DragEvent, task: Task) {
@@ -68,6 +75,7 @@ export class TaskComponent implements OnInit {
         }
       );  
   }
+
   deleteTask(taskId: number): void {
     if (confirm('Are you sure you want to delete this task?')) {
       this.taskService.deleteTask(taskId).subscribe(
@@ -77,6 +85,7 @@ export class TaskComponent implements OnInit {
       );
     }
   }
+
   navigateToAddTask(): void {
     if (this.boardId !== null) {
       this.router.navigate(['/board', this.boardId, 'addtask']);

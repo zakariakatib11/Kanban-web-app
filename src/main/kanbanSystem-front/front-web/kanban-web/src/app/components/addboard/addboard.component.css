@@ -1,58 +1,45 @@
-.container {
-    margin-top: 50px;
-  }
-  
-  .title {
-    font-size: 24px;
-    color: #001f3f; /* Navy Blue */
-    margin-bottom: 20px;
-  }
-  
-  .board-form {
-    background-color: #f9f9f9;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  label {
-    font-weight: bold;
-    display: block; /* Ensure labels appear on their own line */
-    margin-bottom: 5px; /* Add space between label and input */
-  }
-  
-  input[type="text"],
-  textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  
-  .btn-primary {
-    background-color: #001f3f;
-    border-color: #001f3f;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    color: #fff;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn-primary:hover {
-    background-color: #003366;
-  }
-  
-  .success-message {
-    color: #28a745; 
-  }
-  
-  .error-message {
-    color: #dc3545; 
-  }
-  
+/* add-board.component.css */
+
+.modal-content {
+  padding: 20px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #001f3f; 
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #003366; 
+}
+
+.btn-submit {
+  margin-top: 20px;
+}

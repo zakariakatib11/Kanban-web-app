@@ -1,46 +1,43 @@
-.card {
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  max-width: 280px; /* Réduisez la largeur maximale du formulaire */
+.task-form {
+  max-width: 320px; /* Réduisez la largeur maximale du formulaire */
   margin: 0 auto; /* Centrez le formulaire horizontalement */
+  text-align: center; /* Centrez le contenu du formulaire */
 }
 
 .form-group {
-  margin-bottom: 6px; /* Réduisez l'espacement entre les groupes de formulaires */
+  margin-bottom: 16px; /* Espacement entre les groupes de formulaires */
 }
 
 label {
   font-weight: bold;
-  display: block; /* Assurez-vous que les étiquettes apparaissent sur leur propre ligne */
-  margin-bottom: 3px; /* Ajoutez de l'espace entre l'étiquette et l'entrée */
+  display: block; /* Afficher les étiquettes sur une nouvelle ligne */
+  margin-bottom: 6px; /* Espacement entre l'étiquette et l'entrée */
 }
 
 input[type="text"],
 input[type="number"],
 textarea,
 select {
-  width: calc(100% - 20px); /* Soustrayez le rembourrage de la largeur pour tenir compte du modèle de boîte */
-  padding: 6px;
+  width: calc(100% - 24px); /* Largeur des champs de formulaire */
+  padding: 8px; /* Espacement intérieur */
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  margin-top: 2px;
-  font-size: 13px; /* Réduisez la taille de la police */
+  margin-top: 4px; /* Espacement entre les champs */
+  font-size: 14px; /* Taille de la police */
 }
 
 select {
-  appearance: none; /* Supprimez la flèche par défaut dans select */
+  appearance: none; /* Supprimer la flèche par défaut dans select */
 }
 
 button {
-  margin-top: 16px; /* Augmentez l'espacement entre le formulaire et le bouton */
+  margin-top: 24px; /* Espacement entre le formulaire et le bouton */
   background-color: #001f3f;
   border: none;
   border-radius: 6px;
-  padding: 10px 20px; /* Ajustez les dimensions du bouton */
-  font-size: 14px; /* Augmentez légèrement la taille de la police */
+  padding: 12px 24px; /* Dimensions du bouton */
+  font-size: 16px; /* Taille de la police */
   color: #fff;
   cursor: pointer;
   transition: background-color 0.3s;

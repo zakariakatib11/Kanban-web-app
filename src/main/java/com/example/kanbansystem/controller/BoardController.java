@@ -15,7 +15,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/")
 @CrossOrigin(origins = "*")
-public class BoardController {
+public class BoardController { 
 
     @Autowired
     private BoardService boardService;

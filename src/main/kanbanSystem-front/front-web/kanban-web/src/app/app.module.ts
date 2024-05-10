@@ -9,9 +9,10 @@ import { HomeComponent } from './components/home/home.component';
 import { TaskComponent } from './components/task/task.component';
 import { SprintComponent } from './components/sprint/sprint.component';
 import { AddSprintComponent } from './components/addsprint/addsprint.component';
-import { AddboardComponent } from './components/addboard/addboard.component';
 import { AddtaskComponent } from './components/addtask/addtask.component';
+
 import { TaskDetailsComponent } from './components/taskdetails/taskdetails.component';
+import { AddboardComponent } from './components/addboard/addboard.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +21,8 @@ import { TaskDetailsComponent } from './components/taskdetails/taskdetails.compo
     HomeComponent,
     TaskComponent,
     SprintComponent,
+AddboardComponent,
     AddSprintComponent,
-    AddboardComponent,
     AddtaskComponent,
     TaskDetailsComponent
   ],
@@ -29,8 +30,9 @@ import { TaskDetailsComponent } from './components/taskdetails/taskdetails.compo
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
+    ReactiveFormsModule,    
+    HttpClientModule
+  
  
   ],
   providers: [],

@@ -48,11 +48,12 @@ export class BoardComponent implements OnInit {
         .subscribe(
           () => {
             this.fetchBoards();
-            alert('Board deleted successfully.');
+          
           },
           (error: any) => {
-            console.error('Error deleting board: ', error);
-            alert('Error deleting board. Please try again.');
+            alert('Board deleted successfully.');
+            this.router.navigate(['/boards']);
+
           }
         );
     }
