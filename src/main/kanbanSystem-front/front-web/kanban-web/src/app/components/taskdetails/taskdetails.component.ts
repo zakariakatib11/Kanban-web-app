@@ -6,6 +6,9 @@ import { User } from 'src/app/models/User';
 import { TaskService } from 'src/app/services/task.service';
 import { SprintService } from 'src/app/services/sprint.service';
 import { UserService } from 'src/app/services/user.service';
+import { Board } from 'src/app/models/Board';
+import { BoardService } from 'src/app/services/board.service';
+import { LoginService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-task-details',
@@ -18,16 +21,23 @@ export class TaskDetailsComponent implements OnInit {
   users: User[] = [];
   selectedSprintIds: number[] = [];
   selectedUserIds: number[] = [];
+  boards: Board[] = [];
+  userRole: string = ''; // Variable to store the user's role
+
 
   constructor(
     private route: ActivatedRoute,
     private taskService: TaskService,
     private sprintService: SprintService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private boardService: BoardService,
+    private Loginservice: LoginService
   ) {}
 
   ngOnInit(): void {
+    this.fetchBoards();
+    this.userRole = this.Loginservice.getUserRole();
     this.route.params.subscribe(params => {
       const taskId = +params['taskId'];
       this.taskService.getTask(taskId).subscribe(
@@ -76,6 +86,17 @@ export class TaskDetailsComponent implements OnInit {
         }
       );
     }
+  }
+  fetchBoards(): void {
+    this.boardService.getAllBoards()
+      .subscribe(
+        (boards: Board[]) => {
+          this.boards = boards;
+        },
+        (error: any) => {
+          console.error('Error fetching boards: ', error);
+        }
+      );
   }
 }
 

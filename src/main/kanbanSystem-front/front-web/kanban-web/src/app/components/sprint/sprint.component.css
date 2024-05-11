@@ -72,4 +72,6 @@
   .add-sprint-btn:hover {
     background-color: #0056b3;
   }
-  
+  #ctl{
+    margin-top: 100px;
+  }

@@ -3,6 +3,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Task } from 'src/app/models/Task';
 import { TaskService } from 'src/app/services/task.service';
 import { TaskStatus } from 'src/app/models/TaskStatus';
+import { Board } from 'src/app/models/Board';
+import { BoardService } from 'src/app/services/board.service';
+import { LoginService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-task',
@@ -11,17 +14,25 @@ import { TaskStatus } from 'src/app/models/TaskStatus';
 })
 export class TaskComponent implements OnInit {
   tasks: Task[] = [];
+  boards: Board[] = [];
   TaskStatus = TaskStatus;
   boardId: number | any;
+  userRole: string = ''; // Variable to store the user's role
+
   
   constructor(
     private router: Router, 
     private route: ActivatedRoute,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private boardService: BoardService,
+    private Loginservice: LoginService
   ) { }
   ngOnInit(): void {
     this.fetchTasks();
     this.boardId = this.route.snapshot.params['boardId'];
+    this.fetchBoards();
+    this.userRole = this.Loginservice.getUserRole();
+
   }
 
   toggleDropdown(event: MouseEvent) {
@@ -122,5 +133,16 @@ export class TaskComponent implements OnInit {
     } else {
       console.error('Board ID is null');
     }
+  }
+  fetchBoards(): void {
+    this.boardService.getAllBoards()
+      .subscribe(
+        (boards: Board[]) => {
+          this.boards = boards;
+        },
+        (error: any) => {
+          console.error('Error fetching boards: ', error);
+        }
+      );
   }
 }

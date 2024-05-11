@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Board } from 'src/app/models/Board';
 import { Sprint } from 'src/app/models/Sprint';
+import { LoginService } from 'src/app/services/auth.service';
+import { BoardService } from 'src/app/services/board.service';
 import { SprintService } from 'src/app/services/sprint.service';
+
 
 @Component({
   selector: 'app-sprint',
@@ -9,12 +13,17 @@ import { SprintService } from 'src/app/services/sprint.service';
 })
 export class SprintComponent implements OnInit {
   sprints: Sprint[] = [];
+  boards: Board[] = [];
   alertMessage: string = '';
+  userRole: string = ''; // Variable to store the user's role
 
-  constructor(private sprintService: SprintService) { }
+  constructor(private sprintService: SprintService, private boardService: BoardService, private Loginservice: LoginService
+  ) { }
 
   ngOnInit(): void {
     this.fetchSprints();
+    this.fetchBoards();
+    this.userRole = this.Loginservice.getUserRole();
   }
 
   fetchSprints(): void {
@@ -42,5 +51,17 @@ export class SprintComponent implements OnInit {
         }
       );
     }
+  }
+
+  fetchBoards(): void {
+    this.boardService.getAllBoards()
+      .subscribe(
+        (boards: Board[]) => {
+          this.boards = boards;
+        },
+        (error: any) => {
+          console.error('Error fetching boards: ', error);
+        }
+      );
   }
 }

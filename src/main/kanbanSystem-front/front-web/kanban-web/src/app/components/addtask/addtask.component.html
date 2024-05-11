@@ -35,7 +35,7 @@
             <input type="number" id="estimation" name="estimation" [(ngModel)]="taskForm.value.estimation" class="form-control" required>
           </div>
           <div class="col-md-6">
-            <label for="users" class="form-label">Users:</label>
+            <label for="users" class="form-label">Members:</label>
             <select id="users" name="users" [(ngModel)]="selectedUserIds" class="form-select" required>
               <option *ngFor="let user of users" [value]="user.id">{{ user.username }}</option>
             </select>

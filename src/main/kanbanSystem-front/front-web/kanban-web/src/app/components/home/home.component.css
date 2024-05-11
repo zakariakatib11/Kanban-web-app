@@ -36,13 +36,14 @@ header {
 
 .nav-buttons .btn-outline-light {
   color: #ffffff;
-  border-color: #ffffff;
+  border-color: #001f3f;
+  background-color: #003366;
 }
 
 .nav-buttons .btn-outline-light:hover {
-  color: #001f3f;
-  background-color: #ffffff;
-  border-color: #ffffff;
+  color: white;
+  background-color: #001f3f;
+  border-color: #001f3f;
 }
 
 .hero {
@@ -69,11 +70,12 @@ footer {
   color: #ffffff;
   text-align: center;
   padding: 20px 0;
-  position: fixed;
+  /* position: fixed; */ /* Remove this line */
   bottom: 0;
   width: 100%;
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
 }
+
 
 footer p {
   margin-bottom: 0;

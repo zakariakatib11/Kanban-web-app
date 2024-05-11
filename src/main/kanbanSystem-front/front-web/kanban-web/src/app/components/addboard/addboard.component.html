@@ -1,6 +1,6 @@
 <div class="container">
-  <h2 class="title">Add Board</h2>
   <form [formGroup]="boardForm" (ngSubmit)="onSubmit()" class="board-form">
+    <h2 class="title">Add Board</h2>
     <div class="form-group">
       <label for="name">Name:</label>
       <input type="text" class="form-control" id="name" formControlName="name" required>

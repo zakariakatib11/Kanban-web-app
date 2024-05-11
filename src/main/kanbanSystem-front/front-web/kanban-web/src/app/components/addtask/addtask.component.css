@@ -1,48 +1,74 @@
-.task-form {
-  max-width: 320px; /* Réduisez la largeur maximale du formulaire */
-  margin: 0 auto; /* Centrez le formulaire horizontalement */
-  text-align: center; /* Centrez le contenu du formulaire */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Full width */
+  height: 100vh; /* Full viewport height */
+  padding: 0 20px; /* Optional padding */
+  background: linear-gradient(to right, #ffffff, #f3f4f6, #ffffff); /* Create a linear gradient for the background */
+  animation: flowBackground 10s infinite alternate; /* Apply animation to create flowing effect */
 }
 
-.form-group {
-  margin-bottom: 16px; /* Espacement entre les groupes de formulaires */
+@keyframes flowBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
 }
 
-label {
+.card {
+  width: 450px; /* Set the width */
+  max-width: 100%; /* Ensure it doesn't overflow parent container */
+  padding: 50px 40px; /* Padding */
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Shadow */
+  margin-left: 340px;
+  margin-bottom: 30px;
+  margin-top: 40px;
+
+}
+
+.card-header{
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #333;
+}
+
+.card-content {
+  padding: 20px; /* Content padding */
+}
+
+.form-label {
   font-weight: bold;
-  display: block; /* Afficher les étiquettes sur une nouvelle ligne */
-  margin-bottom: 6px; /* Espacement entre l'étiquette et l'entrée */
+  color: #333333; /* Label text color */
 }
 
-input[type="text"],
-input[type="number"],
-textarea,
-select {
-  width: calc(100% - 24px); /* Largeur des champs de formulaire */
-  padding: 8px; /* Espacement intérieur */
+.form-control,
+.form-select {
+  width: 100%;
+  padding: 12px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-top: 4px; /* Espacement entre les champs */
-  font-size: 14px; /* Taille de la police */
-}
-
-select {
-  appearance: none; /* Supprimer la flèche par défaut dans select */
+  border-radius: 8px;
+  margin-bottom: 20px; /* Margin between form elements */
+  font-size: 16px; /* Font size */
 }
 
 button {
-  margin-top: 24px; /* Espacement entre le formulaire et le bouton */
-  background-color: #001f3f;
+  background-color: #00346b; /* Button background color */
   border: none;
-  border-radius: 6px;
-  padding: 12px 24px; /* Dimensions du bouton */
-  font-size: 16px; /* Taille de la police */
-  color: #fff;
+  border-radius: 8px;
+  padding: 12px 24px; /* Button padding */
+  font-size: 18px; /* Button font size */
+  color: #fff; /* Button text color */
   cursor: pointer;
   transition: background-color 0.3s;
+  width: 100%;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #007bff; /* Button hover background color */
 }

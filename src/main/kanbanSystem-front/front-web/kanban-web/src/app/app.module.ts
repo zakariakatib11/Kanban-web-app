@@ -13,6 +13,9 @@ import { AddtaskComponent } from './components/addtask/addtask.component';
 
 import { TaskDetailsComponent } from './components/taskdetails/taskdetails.component';
 import { AddboardComponent } from './components/addboard/addboard.component';
+import { BoardNavbarComponent } from './components/navbar/navbar.component';
+import { LoginComponent } from './components/login/login.component';
+import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -21,10 +24,13 @@ import { AddboardComponent } from './components/addboard/addboard.component';
     HomeComponent,
     TaskComponent,
     SprintComponent,
-AddboardComponent,
+    AddboardComponent,
     AddSprintComponent,
     AddtaskComponent,
-    TaskDetailsComponent
+    TaskDetailsComponent,
+    BoardNavbarComponent,
+    LoginComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule,

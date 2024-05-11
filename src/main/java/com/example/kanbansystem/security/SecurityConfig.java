@@ -35,45 +35,48 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST,"/user").permitAll()
-                //hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/authenticate").permitAll()
+                .antMatchers(HttpMethod.POST,"/register").permitAll()
                 .antMatchers(HttpMethod.GET,"/Allusers").permitAll()
+                .antMatchers(HttpMethod.GET,"/users/**").permitAll()
+
+
 
                 .antMatchers(HttpMethod.GET,"/api/boards/**").permitAll()
-                //hasAnyRole("ADMIN","USER")
+                //.hasAnyRole("ADMIN","USER")
                 .antMatchers(HttpMethod.GET,"/api/boardsId/**").permitAll()
-              //  hasAnyRole("ADMIN","USER")
+                //.hasAnyRole("ADMIN","USER")
                 .antMatchers(HttpMethod.POST,"/api/boards").permitAll()
-                //hasRole("ADMIN")
+                //.hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE,"/api/boardsDeleted/**").permitAll()
-                //hasRole("ADMIN")
+                //.hasRole("ADMIN")
 
                 .antMatchers(HttpMethod.GET,"/api/tasks/**").permitAll()
-               // hasAnyRole("ADMIN","USER")
+                //.hasAnyRole("ADMIN","USER")
                 .antMatchers(HttpMethod.GET,"/api/tasksId/**").permitAll()
-                //hasAnyRole("ADMIN","USER")
+                //.hasAnyRole("ADMIN","USER")
                 .antMatchers(HttpMethod.POST,"/api/tasks").permitAll()
-                .antMatchers(HttpMethod.PUT,"/api/tasks/**").permitAll()
-                //hasRole("ADMIN")
+                //.hasRole("ADMIN")
+               .antMatchers(HttpMethod.PUT,"/api/tasks/**").permitAll()
+                //.hasAnyRole("ADMIN","USER")
                 .antMatchers(HttpMethod.DELETE,"/api/tasksDeleted/**").permitAll()
-                //hasRole("ADMIN")
+                //.hasRole("ADMIN")
 
                 .antMatchers(HttpMethod.GET,"/api/sprints/**").permitAll()
-                //hasAnyRole("ADMIN","USER")
+                //.hasAnyRole("ADMIN","USER")
                 .antMatchers(HttpMethod.GET,"/api/sprintId/**").permitAll()
-                //hasAnyRole("ADMIN","USER")
+                //.hasAnyRole("ADMIN","USER")
                 .antMatchers(HttpMethod.POST,"/api/sprints").permitAll()
-                //hasRole("ADMIN")
+                //.hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE,"/api/sprintDeleted/**").permitAll()
-                //hasRole("ADMIN")
+                //.hasRole("ADMIN")
 
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-               // .failureHandler(authenticationFailureHandler())// Set custom authentication failure handler
                 .and()
                 .httpBasic();
-    }
+     }
     @Bean
     public UserDetailsService myUserDetailsService() {
         return new MyuserDetailsService();

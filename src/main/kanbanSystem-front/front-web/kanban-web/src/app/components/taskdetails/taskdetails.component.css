@@ -1,57 +1,60 @@
 .task-details {
-    margin-top: 20px;
-  }
-  
-  .details {
-    max-width: 600px; /* Adjust as needed */
-    width: 100%; /* Ensure full width */
-    height: auto; /* Adjust height as needed */
-    margin: 0 auto;
-    background-color: #f9f9f9;
-    padding: 40px; /* Increase padding for more height */
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .details h2 {
-    margin-bottom: 20px;
-    color: #001f3f; /* Navy Blue */
-  }
-  body {
-  font-family: Arial, sans-serif;
+  margin-top: 20px;
+  /* Center align the contents */
 }
 
-  .details .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .details label {
-    font-weight: bold;
-  }
-  
-  .details input[type="text"],
-  .details textarea,
-  .details select {
-    width: 100%;
-    padding: 15px; /* Increase padding for more height */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  
-  .details button {
-    width: 100%; /* Ensure full width */
-    background-color: #001f3f;
-    border-color: #001f3f;
-    border-radius: 5px;
-    padding: 15px 20px;
-    font-size: 16px;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .details button:hover {
-    background-color: #003366;
-  }
-  
+.title {
+  color: #001f3f;
+  text-align: center; 
+}
+
+
+.details {
+  max-width: 600px; /* Adjust as needed */
+  width: 100%; /* Ensure full width */
+  height: auto; /* Adjust height as needed */
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  padding: 40px; /* Increase padding for more height */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.details h2 {
+  margin-bottom: 20px;
+  color: #001f3f; /* Navy Blue */
+}
+
+.details .form-group {
+  margin-bottom: 20px;
+}
+
+.details label {
+  font-weight: bold;
+}
+
+.details input[type="text"],
+.details textarea,
+.details select {
+  width: 100%;
+  padding: 15px; /* Increase padding for more height */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.details button {
+  width: 100%; /* Ensure full width */
+  background-color: #001f3f;
+  border-color: #001f3f;
+  border-radius: 5px;
+  padding: 15px 20px;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.details button:hover {
+  background-color: #003366;
+}

@@ -1,39 +1,39 @@
+<app-board-navbar [boards]="boards"></app-board-navbar>
 <div *ngIf="task" class="task-details">
-  <h2>Task Details</h2>
-  <div class="details">
-    <div class="form-group">
-      <label for="name">Name:</label>
-      <input type="text" id="name" class="form-control" [(ngModel)]="task.name">
+    <div class="details">
+        <h2 class="title">Task Details</h2>
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" class="form-control" [(ngModel)]="task.name" [disabled]="userRole !== 'ROLE_ADMIN'">
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" class="form-control" [(ngModel)]="task.description" [disabled]="userRole !== 'ROLE_ADMIN'"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="estimation">Estimation:</label><br>
+            <input type="number" id="estimation" class="form-control" [(ngModel)]="task.estimation" [disabled]="userRole !== 'ROLE_ADMIN'">
+        </div>
+        <div class="form-group">
+            <label for="status">Status:</label>
+            <select id="status" class="form-control" [(ngModel)]="task.status" [disabled]="userRole !== 'ROLE_ADMIN'">
+                <option value="TODO">TODO</option>
+                <option value="IN_PROGRESS">IN_PROGRESS</option>
+                <option value="DONE">DONE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="users">Members:</label>
+            <select id="users" name="users" [(ngModel)]="selectedUserIds" required [disabled]="userRole !== 'ROLE_ADMIN'">
+                <option *ngFor="let user of users" [value]="user.id">{{ user.username }}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="sprints">Sprints:</label>
+            <select id="sprints" name="sprints" [(ngModel)]="selectedSprintIds" required [disabled]="userRole !== 'ROLE_ADMIN'">
+                <option *ngFor="let sprint of sprints" [value]="sprint.id">{{ sprint.name }}</option>
+            </select>
+        </div>
+        <button *ngIf="userRole === 'ROLE_ADMIN'" class="btn btn-primary" (click)="updateTask()">Save Changes</button>
     </div>
-    <div class="form-group">
-      <label for="description">Description:</label>
-      <textarea id="description" class="form-control" [(ngModel)]="task.description"></textarea>
-    </div>
-    <div class="form-group">
-      <label for="estimation">Estimation:</label><br>
-      <input type="number" id="estimation" class="form-control" [(ngModel)]="task.estimation">
-    </div>
-    <div class="form-group">
-      <label for="status">Status:</label>
-      <select id="status" class="form-control" [(ngModel)]="task.status">
-        <option value="TODO">TODO</option>
-        <option value="IN_PROGRESS">IN_PROGRESS</option>
-        <option value="DONE">DONE</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="users">Users:</label>
-      <select id="users" name="users" [(ngModel)]="selectedUserIds" required>
-        <option *ngFor="let user of users" [value]="user.id">{{ user.username }}</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="sprints">Sprints:</label>
-      <select id="sprints" name="sprints" [(ngModel)]="selectedSprintIds" required>
-        <option *ngFor="let sprint of sprints" [value]="sprint.id">{{ sprint.name }}</option>
-      </select>
-    </div>
-    <button class="btn btn-primary" (click)="updateTask()">Save Changes</button>
-  </div>
 </div>
-
