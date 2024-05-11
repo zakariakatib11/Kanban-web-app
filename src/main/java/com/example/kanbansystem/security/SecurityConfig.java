@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             return corsConfig;
         });
 
-        http.cors().and().csrf().and()
+        http.cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST,"/user").permitAll()
                 //hasRole("ADMIN")
