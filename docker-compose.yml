@@ -1,31 +1,26 @@
-version: '3'
+version:  "3.9"
 
 services:
   spring-boot-app:
+    image: spring-kanban-app
     container_name: spring-app
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-spring
     ports:
       - "91:8080"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/kanban
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: ""
-
-
-  angular-app:
-    container_name: angular-app
+  frontend:
+    image: angular-kanban-app
+    container_name: kanban-ui
     build:
-      context: .
+      context: src/main/kanbanSystem-front/front-web/kanban-web
+      dockerfile: Dockerfile-angular
     ports:
-      - "4200:4500"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/kanban
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: ""
-
-
+      - "4200:91"
   db:
     image: mysql:latest
     container_name: db
