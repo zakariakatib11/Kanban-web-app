@@ -36,9 +36,11 @@
           </div>
           <div class="col-md-6">
             <label for="users" class="form-label">Members:</label>
-            <select id="users" name="users" [(ngModel)]="selectedUserIds" class="form-select" required>
-              <option *ngFor="let user of users" [value]="user.id">{{ user.username }}</option>
-            </select>
+            <div class="user-chips">
+              <div *ngFor="let user of users" class="user-circle" [class.selected]="selectedUserIds.includes(user.id)" (click)="toggleUser(user.id)">
+                {{ user.username.charAt(0) }}
+              </div>
+            </div>
           </div>
           <div class="col-md-6">
             <label for="sprints" class="form-label">Sprints:</label>

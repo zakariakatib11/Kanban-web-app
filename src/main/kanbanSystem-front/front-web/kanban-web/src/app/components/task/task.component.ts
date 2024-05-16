@@ -6,6 +6,7 @@ import { TaskStatus } from 'src/app/models/TaskStatus';
 import { Board } from 'src/app/models/Board';
 import { BoardService } from 'src/app/services/board.service';
 import { LoginService } from 'src/app/services/auth.service';
+import { Sprint } from 'src/app/models/Sprint';
 
 @Component({
   selector: 'app-task',
@@ -15,9 +16,11 @@ import { LoginService } from 'src/app/services/auth.service';
 export class TaskComponent implements OnInit {
   tasks: Task[] = [];
   boards: Board[] = [];
+  sprints : Sprint[] = [];
   TaskStatus = TaskStatus;
   boardId: number | any;
   userRole: string = ''; // Variable to store the user's role
+  userId: number | any;
 
   
   constructor(
@@ -32,6 +35,7 @@ export class TaskComponent implements OnInit {
     this.boardId = this.route.snapshot.params['boardId'];
     this.fetchBoards();
     this.userRole = this.Loginservice.getUserRole();
+    this.userId=this.Loginservice.getUserId();
 
   }
 
@@ -77,16 +81,37 @@ export class TaskComponent implements OnInit {
   }
   fetchTasks(): void {
     const boardId = this.route.snapshot.params['boardId'];
-    this.taskService.getTasksByBoardId(boardId)
-      .subscribe(
-        (tasks: Task[]) => {
-          this.tasks = tasks;
-        },
-        (error: any) => {
-          console.error('Error fetching tasks: ', error);
-        }
-      );
+    const userId = this.Loginservice.getUserId();
+    const userRole = this.Loginservice.getUserRole();
+  
+    if (userRole === 'ROLE_ADMIN') {
+      this.taskService.getTasksByBoardId(boardId)
+        .subscribe(
+          (tasks: Task[]) => {
+            this.tasks = tasks;
+          },
+          (error: any) => {
+            console.error('Error fetching tasks: ', error);
+          }
+        );
+    } else {
+      if (userId) {
+        this.taskService.getTasksByBoardId(boardId)
+          .subscribe(
+            (tasks: Task[]) => {
+              this.tasks = tasks.filter(task => task.users.some(user => user.id === userId));
+            },
+            (error: any) => {
+              console.error('Error fetching tasks: ', error);
+            }
+          );
+      } else {
+        console.error('User ID not found');
+      }
+    }
   }
+  
+
   updateTaskStatusToInProgress(taskId: number, status: TaskStatus): void {
     this.taskService.updateTaskStatusToInProgress(taskId, status)
       .subscribe(
@@ -145,4 +170,5 @@ export class TaskComponent implements OnInit {
         }
       );
   }
+
 }

@@ -1,3 +1,4 @@
+// Importing necessary modules and components
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'; 
 import { Task } from 'src/app/models/Task';
@@ -128,5 +129,13 @@ export class AddtaskComponent implements OnInit {
         console.error('Error adding task:', error);
       }
     );
+  }
+  toggleUser(userId: number): void {
+    const index = this.selectedUserIds.indexOf(userId);
+    if (index !== -1) {
+      this.selectedUserIds.splice(index, 1);
+    } else {
+      this.selectedUserIds.push(userId);
+    }
   }
 }

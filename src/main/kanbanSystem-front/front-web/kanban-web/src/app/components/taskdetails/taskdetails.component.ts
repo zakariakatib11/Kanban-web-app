@@ -98,5 +98,13 @@ export class TaskDetailsComponent implements OnInit {
         }
       );
   }
+  toggleUser(userId: number): void {
+    const index = this.selectedUserIds.indexOf(userId);
+    if (index !== -1) {
+      this.selectedUserIds.splice(index, 1);
+    } else {
+      this.selectedUserIds.push(userId);
+    }
+  }
 }
 
